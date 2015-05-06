@@ -89,7 +89,7 @@ Output:
 
     Who let the dog out
 
-If you only need to apply one normalization, use one of this methods:
+If you only need to apply one normalization, use one of these methods:
 
 -  remove_accent_marks
 -  replace_hyphens
