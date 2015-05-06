@@ -9,12 +9,12 @@ normalizr
    
 Normalizr is a Python library for text normalization that allows the next actions:
 
-- Remove accents.
-- Remove extra whitespaces.
-- Remove hyphens.
-- Remove punctuation.
-- Remove stop words (from 13 different languages).
-- Remove symbols.
+-  Remove accents.
+-  Remove extra whitespaces.
+-  Remove hyphens.
+-  Remove punctuation.
+-  Remove stop words (from 13 different languages).
+-  Remove symbols.
 
 Installation
 ------------
@@ -52,4 +52,6 @@ The next code shows a sample usage of this library:
 Output:
 
 .. code::
+
     let dog
+
