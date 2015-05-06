@@ -1,3 +1,4 @@
+import codecs
 import os
 import string
 import unicodedata
@@ -27,7 +28,7 @@ class Normalizr:
         Params:
             language (string): Language code.
         """
-        with open(os.path.join(path, 'data/stop-' + language), 'r') as file:
+        with codecs.open(os.path.join(path, 'data/stop-' + language), 'r', 'UTF-8') as file:
             for line in file:
                 fields = line.split('|')
                 if fields:
