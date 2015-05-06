@@ -15,7 +15,7 @@ with open("README.rst", "rb") as f:
 
 setup(name='normalizr',
       version=version,
-      description='Python library to normalize text',
+      description='Python library for text normalization',
       long_description=long_description,
       author='David Moreno-Garcia',
       author_email='david.mogar@gmail.com',

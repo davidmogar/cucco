@@ -1,8 +1,24 @@
+import os
 import string
 import unicodedata
 
+path = os.path.dirname(__file__)
+
 
 class Normalizr:
+    __stop_words = set()
+
+    def __init__(self, language='en'):
+        self._load_stop_words(language)
+
+    def _load_stop_words(self, language):
+        with open(os.path.join(path, 'data/stop-' + language), 'r') as file:
+            for line in file:
+                fields = line.split('|')
+                if fields:
+                    word = fields[0].strip()
+                    if word: self.__stop_words.add(word)
+
     def normalize(self, text):
         pass
 
@@ -18,6 +34,9 @@ class Normalizr:
 
     def remove_punctuation(self, text):
         return ''.join(c for c in text if c not in string.punctuation)
+
+    def remove_stop_words(self, text):
+        return ' '.join(word for word in text.lower().split(' ') if word not in self.__stop_words)
 
     def remove_symbols(self, text, format='NFKD', excluded=set()):
         categories = set(['Mn', 'Sc', 'Sk', 'Sm', 'So'])
