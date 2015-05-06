@@ -97,4 +97,3 @@ If you only need to apply one normalization, use one of this methods:
 -  remove_stop_wordd
 -  remove_symbols
 -  remove_extra_whitespaces
-
