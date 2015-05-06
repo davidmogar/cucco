@@ -109,7 +109,7 @@ class Normalizr:
         """
         return text.replace('-', replacement)
 
-    def remove_punctuation(self, text):
+    def remove_punctuation(self, text, excluded=set()):
         """
         Remove punctuation from input text.
 
@@ -117,11 +117,12 @@ class Normalizr:
 
         Params:
             text (string): The text to be processed.
+            excluded (set): Set of characters to exclude.
 
         Returns:
             The text without punctuation.
         """
-        return ''.join(c for c in text if c not in self.__punctuation)
+        return ''.join(c for c in text if c not in self.__punctuation or c in excluded)
 
     def remove_stop_words(self, text, ignore_case=True):
         """
