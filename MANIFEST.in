@@ -1,2 +1,2 @@
-include genderator/data/*
+include normalizr/data/*
 include README.md
