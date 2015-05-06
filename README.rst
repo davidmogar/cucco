@@ -16,6 +16,25 @@ Normalizr is a Python library for text normalization that allows the next action
 -  Remove stop words (from 13 different languages).
 -  Remove symbols.
 
+Supported languages
+-------------------
+
+At the moment, normalizr can remove stop words in these languages:
+
+-  Danish (da)
+-  Dutch (nl)
+-  English (en, default)
+-  Finnish (fi)
+-  French (fr)
+-  German (de)
+-  Hungarian (hu)
+-  Italian (it)
+-  Norwegian (no)
+-  Portuguese (pr)
+-  Russian (ru)
+-  Spanish (es)
+-  Swedish (sv)
+
 Installation
 ------------
 
@@ -47,11 +66,35 @@ The next code shows a sample usage of this library:
     from normalizr import Normalizr
 
     normalizr = Normalizr(language='en')
-    print(normalizr.normalize('I love you'))
+    print(normalizr.normalize('Who let the dog out?'))
 
 Output:
 
 .. code::
 
     let dog
+
+It's also possible to send a list of normalizations to apply, which will be executed in order.
+
+.. code:: python
+
+    from normalizr import Normalizr
+
+    normalizr = Normalizr(language='en')
+    print(normalizr.normalize('Who    let   the dog out?', ['whitespaces', 'punctuation']))
+
+Output:
+
+.. code::
+
+    Who let the dog out
+
+If you only need to apply one normalization, use one of this methods:
+
+-  remove_accent_marks
+-  replace_hyphens
+-  remove_punctuation
+-  remove_stop_wordd
+-  remove_symbols
+-  remove_extra_whitespaces
 
