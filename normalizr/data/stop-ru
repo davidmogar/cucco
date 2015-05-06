@@ -6,231 +6,230 @@
  | this is a ranked list (commonest to rarest) of stopwords derived from
  | a large text sample.
 
- | letter `ё' is translated to `е'.
+ | letter `бё' is translated to `ц┘'.
 
-и              | and
-в              | in/into
-во             | alternative form
-не             | not
-что            | what/that
-он             | he
-на             | on/onto
-я              | i
-с              | from
-со             | alternative form
-как            | how
-а              | milder form of `no' (but)
-то             | conjunction and form of `that'
-все            | all
-она            | she
-так            | so, thus
-его            | him
-но             | but
-да             | yes/and
-ты             | thou
-к              | towards, by
-у              | around, chez
-же             | intensifier particle
-вы             | you
-за             | beyond, behind
-бы             | conditional/subj. particle
-по             | up to, along
-только         | only
-ее             | her
-мне            | to me
-было           | it was
-вот            | here is/are, particle
-от             | away from
-меня           | me
-еще            | still, yet, more
-нет            | no, there isnt/arent
-о              | about
-из             | out of
-ему            | to him
-теперь         | now
-когда          | when
-даже           | even
-ну             | so, well
-вдруг          | suddenly
-ли             | interrogative particle
-если           | if
-уже            | already, but homonym of `narrower'
-или            | or
-ни             | neither
-быть           | to be
-был            | he was
-него           | prepositional form of его
-до             | up to
-вас            | you accusative
-нибудь         | indef. suffix preceded by hyphen
-опять          | again
-уж             | already, but homonym of `adder'
-вам            | to you
-сказал         | he said
-ведь           | particle `after all'
-там            | there
-потом          | then
-себя           | oneself
-ничего         | nothing
-ей             | to her
-может          | usually with `быть' as `maybe'
-они            | they
-тут            | here
-где            | where
-есть           | there is/are
-надо           | got to, must
-ней            | prepositional form of  ей
-для            | for
-мы             | we
-тебя           | thee
-их             | them, their
-чем            | than
-была           | she was
-сам            | self
-чтоб           | in order to
-без            | without
-будто          | as if
-человек        | man, person, one
-чего           | genitive form of `what'
-раз            | once
-тоже           | also
-себе           | to oneself
-под            | beneath
-жизнь          | life
-будет          | will be
-ж              | short form of intensifer particle `же'
-тогда          | then
-кто            | who
-этот           | this
-говорил        | was saying
-того           | genitive form of `that'
-потому         | for that reason
-этого          | genitive form of `this'
-какой          | which
-совсем         | altogether
-ним            | prepositional form of `его', `они'
-здесь          | here
-этом           | prepositional form of `этот'
-один           | one
-почти          | almost
-мой            | my
-тем            | instrumental/dative plural of `тот', `то'
-чтобы          | full form of `in order that'
-нее            | her (acc.)
-кажется        | it seems
-сейчас         | now
-были           | they were
-куда           | where to
-зачем          | why
-сказать        | to say
-всех           | all (acc., gen. preposn. plural)
-никогда        | never
-сегодня        | today
-можно          | possible, one can
-при            | by
-наконец        | finally
-два            | two
-об             | alternative form of `о', about
-другой         | another
-хоть           | even
-после          | after
-над            | above
-больше         | more
-тот            | that one (masc.)
-через          | across, in
-эти            | these
-нас            | us
-про            | about
-всего          | in all, only, of all
-них            | prepositional form of `они' (they)
-какая          | which, feminine
-много          | lots
-разве          | interrogative particle
-сказала        | she said
-три            | three
-эту            | this, acc. fem. sing.
-моя            | my, feminine
-впрочем        | moreover, besides
-хорошо         | good
-свою           | ones own, acc. fem. sing.
-этой           | oblique form of `эта', fem. `this'
-перед          | in front of
-иногда         | sometimes
-лучше          | better
-чуть           | a little
-том            | preposn. form of `that one'
-нельзя         | one must not
-такой          | such a one
-им             | to them
-более          | more
-всегда         | always
-конечно        | of course
-всю            | acc. fem. sing of `all'
-между          | between
+ц┴              | and
+ц≈              | in/into
+ц≈ц▐             | alternative form
+ц▌ц┘             | not
+ц·ц■ц▐            | what/that
+ц▐ц▌             | he
+ц▌ц│             | on/onto
+ц▒              | i
+ц⌠              | from
+ц⌠ц▐             | alternative form
+ц▀ц│ц▀            | how
+ц│              | milder form of `no' (but)
+ц■ц▐             | conjunction and form of `that'
+ц≈ц⌠ц┘            | all
+ц▐ц▌ц│            | she
+ц■ц│ц▀            | so, thus
+ц┘ц┤ц▐            | him
+ц▌ц▐             | but
+ц└ц│             | yes/and
+ц■ц≥             | thou
+ц▀              | towards, by
+ц∙              | around, chez
+ц√ц┘             | intensifier particle
+ц≈ц≥             | you
+ц ц│             | beyond, behind
+ц┌ц≥             | conditional/subj. particle
+ц░ц▐             | up to, along
+ц■ц▐ц▄ц≤ц▀ц▐         | only
+ц┘ц┘             | her
+ц█ц▌ц┘            | to me
+ц┌ц≥ц▄ц▐           | it was
+ц≈ц▐ц■            | here is/are, particle
+ц▐ц■             | away from
+ц█ц┘ц▌ц▒           | me
+ц┘ц²ц┘            | still, yet, more
+ц▌ц┘ц■            | no, there isnt/arent
+ц▐              | about
+ц┴ц              | out of
+ц┘ц█ц∙            | to him
+ц■ц┘ц░ц┘ц▓ц≤         | now
+ц▀ц▐ц┤ц└ц│          | when
+ц└ц│ц√ц┘           | even
+ц▌ц∙             | so, well
+ц≈ц└ц▓ц∙ц┤          | suddenly
+ц▄ц┴             | interrogative particle
+ц┘ц⌠ц▄ц┴           | if
+ц∙ц√ц┘            | already, but homonym of `narrower'
+ц┴ц▄ц┴            | or
+ц▌ц┴             | neither
+ц┌ц≥ц■ц≤           | to be
+ц┌ц≥ц▄            | he was
+ц▌ц┘ц┤ц▐           | prepositional form of ц┘ц┤ц▐
+ц└ц▐             | up to
+ц≈ц│ц⌠            | you accusative
+ц▌ц┴ц┌ц∙ц└ц≤         | indef. suffix preceded by hyphen
+ц▐ц░ц▒ц■ц≤          | again
+ц∙ц√             | already, but homonym of `adder'
+ц≈ц│ц█            | to you
+ц⌠ц▀ц│ц ц│ц▄         | he said
+ц≈ц┘ц└ц≤           | particle `after all'
+ц■ц│ц█            | there
+ц░ц▐ц■ц▐ц█          | then
+ц⌠ц┘ц┌ц▒           | oneself
+ц▌ц┴ц·ц┘ц┤ц▐         | nothing
+ц┘ц┼             | to her
+ц█ц▐ц√ц┘ц■          | usually with `ц┌ц≥ц■ц≤' as `maybe'
+ц▐ц▌ц┴            | they
+ц■ц∙ц■            | here
+ц┤ц└ц┘            | where
+ц┘ц⌠ц■ц≤           | there is/are
+ц▌ц│ц└ц▐           | got to, must
+ц▌ц┘ц┼            | prepositional form of  ц┘ц┼
+ц└ц▄ц▒            | for
+ц█ц≥             | we
+ц■ц┘ц┌ц▒           | thee
+ц┴ц┬             | them, their
+ц·ц┘ц█            | than
+ц┌ц≥ц▄ц│           | she was
+ц⌠ц│ц█            | self
+ц·ц■ц▐ц┌           | in order to
+ц┌ц┘ц             | without
+ц┌ц∙ц└ц■ц▐          | as if
+ц·ц┘ц▄ц▐ц≈ц┘ц▀        | man, person, one
+ц·ц┘ц┤ц▐           | genitive form of `what'
+ц▓ц│ц             | once
+ц■ц▐ц√ц┘           | also
+ц⌠ц┘ц┌ц┘           | to oneself
+ц░ц▐ц└            | beneath
+ц√ц┴ц ц▌ц≤          | life
+ц┌ц∙ц└ц┘ц■          | will be
+ц√              | short form of intensifer particle `ц√ц┘'
+ц■ц▐ц┤ц└ц│          | then
+ц▀ц■ц▐            | who
+ц°ц■ц▐ц■           | this
+ц┤ц▐ц≈ц▐ц▓ц┴ц▄        | was saying
+ц■ц▐ц┤ц▐           | genitive form of `that'
+ц░ц▐ц■ц▐ц█ц∙         | for that reason
+ц°ц■ц▐ц┤ц▐          | genitive form of `this'
+ц▀ц│ц▀ц▐ц┼          | which
+ц⌠ц▐ц≈ц⌠ц┘ц█         | altogether
+ц▌ц┴ц█            | prepositional form of `ц┘ц┤ц▐', `ц▐ц▌ц┴'
+ц ц└ц┘ц⌠ц≤          | here
+ц°ц■ц▐ц█           | prepositional form of `ц°ц■ц▐ц■'
+ц▐ц└ц┴ц▌           | one
+ц░ц▐ц·ц■ц┴          | almost
+ц█ц▐ц┼            | my
+ц■ц┘ц█            | instrumental/dative plural of `ц■ц▐ц■', `ц■ц▐'
+ц·ц■ц▐ц┌ц≥          | full form of `in order that'
+ц▌ц┘ц┘            | her (acc.)
+ц▀ц│ц√ц┘ц■ц⌠ц▒        | it seems
+ц⌠ц┘ц┼ц·ц│ц⌠         | now
+ц┌ц≥ц▄ц┴           | they were
+ц▀ц∙ц└ц│           | where to
+ц ц│ц·ц┘ц█          | why
+ц⌠ц▀ц│ц ц│ц■ц≤        | to say
+ц≈ц⌠ц┘ц┬           | all (acc., gen. preposn. plural)
+ц▌ц┴ц▀ц▐ц┤ц└ц│        | never
+ц⌠ц┘ц┤ц▐ц└ц▌ц▒        | today
+ц█ц▐ц√ц▌ц▐          | possible, one can
+ц░ц▓ц┴            | by
+ц▌ц│ц▀ц▐ц▌ц┘ц┐        | finally
+ц└ц≈ц│            | two
+ц▐ц┌             | alternative form of `ц▐', about
+ц└ц▓ц∙ц┤ц▐ц┼         | another
+ц┬ц▐ц■ц≤           | even
+ц░ц▐ц⌠ц▄ц┘          | after
+ц▌ц│ц└            | above
+ц┌ц▐ц▄ц≤ц⌡ц┘         | more
+ц■ц▐ц■            | that one (masc.)
+ц·ц┘ц▓ц┘ц           | across, in
+ц°ц■ц┴            | these
+ц▌ц│ц⌠            | us
+ц░ц▓ц▐            | about
+ц≈ц⌠ц┘ц┤ц▐          | in all, only, of all
+ц▌ц┴ц┬            | prepositional form of `ц▐ц▌ц┴' (they)
+ц▀ц│ц▀ц│ц▒          | which, feminine
+ц█ц▌ц▐ц┤ц▐          | lots
+ц▓ц│ц ц≈ц┘          | interrogative particle
+ц⌠ц▀ц│ц ц│ц▄ц│        | she said
+ц■ц▓ц┴            | three
+ц°ц■ц∙            | this, acc. fem. sing.
+ц█ц▐ц▒            | my, feminine
+ц≈ц░ц▓ц▐ц·ц┘ц█        | moreover, besides
+ц┬ц▐ц▓ц▐ц⌡ц▐         | good
+ц⌠ц≈ц▐ц─           | ones own, acc. fem. sing.
+ц°ц■ц▐ц┼           | oblique form of `ц°ц■ц│', fem. `this'
+ц░ц┘ц▓ц┘ц└          | in front of
+ц┴ц▌ц▐ц┤ц└ц│         | sometimes
+ц▄ц∙ц·ц⌡ц┘          | better
+ц·ц∙ц■ц≤           | a little
+ц■ц▐ц█            | preposn. form of `that one'
+ц▌ц┘ц▄ц≤ц ц▒         | one must not
+ц■ц│ц▀ц▐ц┼          | such a one
+ц┴ц█             | to them
+ц┌ц▐ц▄ц┘ц┘          | more
+ц≈ц⌠ц┘ц┤ц└ц│         | always
+ц▀ц▐ц▌ц┘ц·ц▌ц▐        | of course
+ц≈ц⌠ц─            | acc. fem. sing of `all'
+ц█ц┘ц√ц└ц∙          | between
 
 
   | b: some paradigms
   |
   | personal pronouns
   |
-  | я  меня  мне  мной  [мною]
-  | ты  тебя  тебе  тобой  [тобою]
-  | он  его  ему  им  [него, нему, ним]
-  | она  ее  эи  ею  [нее, нэи, нею]
-  | оно  его  ему  им  [него, нему, ним]
+  | ц▒  ц█ц┘ц▌ц▒  ц█ц▌ц┘  ц█ц▌ц▐ц┼  [ц█ц▌ц▐ц─]
+  | ц■ц≥  ц■ц┘ц┌ц▒  ц■ц┘ц┌ц┘  ц■ц▐ц┌ц▐ц┼  [ц■ц▐ц┌ц▐ц─]
+  | ц▐ц▌  ц┘ц┤ц▐  ц┘ц█ц∙  ц┴ц█  [ц▌ц┘ц┤ц▐, ц▌ц┘ц█ц∙, ц▌ц┴ц█]
+  | ц▐ц▌ц│  ц┘ц┘  ц°ц┴  ц┘ц─  [ц▌ц┘ц┘, ц▌ц°ц┴, ц▌ц┘ц─]
+  | ц▐ц▌ц▐  ц┘ц┤ц▐  ц┘ц█ц∙  ц┴ц█  [ц▌ц┘ц┤ц▐, ц▌ц┘ц█ц∙, ц▌ц┴ц█]
   |
-  | мы  нас  нам  нами
-  | вы  вас  вам  вами
-  | они  их  им  ими  [них, ним, ними]
+  | ц█ц≥  ц▌ц│ц⌠  ц▌ц│ц█  ц▌ц│ц█ц┴
+  | ц≈ц≥  ц≈ц│ц⌠  ц≈ц│ц█  ц≈ц│ц█ц┴
+  | ц▐ц▌ц┴  ц┴ц┬  ц┴ц█  ц┴ц█ц┴  [ц▌ц┴ц┬, ц▌ц┴ц█, ц▌ц┴ц█ц┴]
   |
-  |   себя  себе  собой   [собою]
+  |   ц⌠ц┘ц┌ц▒  ц⌠ц┘ц┌ц┘  ц⌠ц▐ц┌ц▐ц┼   [ц⌠ц▐ц┌ц▐ц─]
   |
-  | demonstrative pronouns: этот (this), тот (that)
+  | demonstrative pronouns: ц°ц■ц▐ц■ (this), ц■ц▐ц■ (that)
   |
-  | этот  эта  это  эти
-  | этого  эты  это  эти
-  | этого  этой  этого  этих
-  | этому  этой  этому  этим
-  | этим  этой  этим  [этою]  этими
-  | этом  этой  этом  этих
+  | ц°ц■ц▐ц■  ц°ц■ц│  ц°ц■ц▐  ц°ц■ц┴
+  | ц°ц■ц▐ц┤ц▐  ц°ц■ц≥  ц°ц■ц▐  ц°ц■ц┴
+  | ц°ц■ц▐ц┤ц▐  ц°ц■ц▐ц┼  ц°ц■ц▐ц┤ц▐  ц°ц■ц┴ц┬
+  | ц°ц■ц▐ц█ц∙  ц°ц■ц▐ц┼  ц°ц■ц▐ц█ц∙  ц°ц■ц┴ц█
+  | ц°ц■ц┴ц█  ц°ц■ц▐ц┼  ц°ц■ц┴ц█  [ц°ц■ц▐ц─]  ц°ц■ц┴ц█ц┴
+  | ц°ц■ц▐ц█  ц°ц■ц▐ц┼  ц°ц■ц▐ц█  ц°ц■ц┴ц┬
   |
-  | тот  та  то  те
-  | того  ту  то  те
-  | того  той  того  тех
-  | тому  той  тому  тем
-  | тем  той  тем  [тою]  теми
-  | том  той  том  тех
+  | ц■ц▐ц■  ц■ц│  ц■ц▐  ц■ц┘
+  | ц■ц▐ц┤ц▐  ц■ц∙  ц■ц▐  ц■ц┘
+  | ц■ц▐ц┤ц▐  ц■ц▐ц┼  ц■ц▐ц┤ц▐  ц■ц┘ц┬
+  | ц■ц▐ц█ц∙  ц■ц▐ц┼  ц■ц▐ц█ц∙  ц■ц┘ц█
+  | ц■ц┘ц█  ц■ц▐ц┼  ц■ц┘ц█  [ц■ц▐ц─]  ц■ц┘ц█ц┴
+  | ц■ц▐ц█  ц■ц▐ц┼  ц■ц▐ц█  ц■ц┘ц┬
   |
   | determinative pronouns
   |
-  | (a) весь (all)
+  | (a) ц≈ц┘ц⌠ц≤ (all)
   |
-  | весь  вся  все  все
-  | всего  всю  все  все
-  | всего  всей  всего  всех
-  | всему  всей  всему  всем
-  | всем  всей  всем  [всею]  всеми
-  | всем  всей  всем  всех
+  | ц≈ц┘ц⌠ц≤  ц≈ц⌠ц▒  ц≈ц⌠ц┘  ц≈ц⌠ц┘
+  | ц≈ц⌠ц┘ц┤ц▐  ц≈ц⌠ц─  ц≈ц⌠ц┘  ц≈ц⌠ц┘
+  | ц≈ц⌠ц┘ц┤ц▐  ц≈ц⌠ц┘ц┼  ц≈ц⌠ц┘ц┤ц▐  ц≈ц⌠ц┘ц┬
+  | ц≈ц⌠ц┘ц█ц∙  ц≈ц⌠ц┘ц┼  ц≈ц⌠ц┘ц█ц∙  ц≈ц⌠ц┘ц█
+  | ц≈ц⌠ц┘ц█  ц≈ц⌠ц┘ц┼  ц≈ц⌠ц┘ц█  [ц≈ц⌠ц┘ц─]  ц≈ц⌠ц┘ц█ц┴
+  | ц≈ц⌠ц┘ц█  ц≈ц⌠ц┘ц┼  ц≈ц⌠ц┘ц█  ц≈ц⌠ц┘ц┬
   |
-  | (b) сам (himself etc)
+  | (b) ц⌠ц│ц█ (himself etc)
   |
-  | сам  сама  само  сами
-  | самого саму  само  самих
-  | самого самой самого  самих
-  | самому самой самому  самим
-  | самим  самой  самим  [самою]  самими
-  | самом самой самом  самих
+  | ц⌠ц│ц█  ц⌠ц│ц█ц│  ц⌠ц│ц█ц▐  ц⌠ц│ц█ц┴
+  | ц⌠ц│ц█ц▐ц┤ц▐ ц⌠ц│ц█ц∙  ц⌠ц│ц█ц▐  ц⌠ц│ц█ц┴ц┬
+  | ц⌠ц│ц█ц▐ц┤ц▐ ц⌠ц│ц█ц▐ц┼ ц⌠ц│ц█ц▐ц┤ц▐  ц⌠ц│ц█ц┴ц┬
+  | ц⌠ц│ц█ц▐ц█ц∙ ц⌠ц│ц█ц▐ц┼ ц⌠ц│ц█ц▐ц█ц∙  ц⌠ц│ц█ц┴ц█
+  | ц⌠ц│ц█ц┴ц█  ц⌠ц│ц█ц▐ц┼  ц⌠ц│ц█ц┴ц█  [ц⌠ц│ц█ц▐ц─]  ц⌠ц│ц█ц┴ц█ц┴
+  | ц⌠ц│ц█ц▐ц█ ц⌠ц│ц█ц▐ц┼ ц⌠ц│ц█ц▐ц█  ц⌠ц│ц█ц┴ц┬
   |
   | stems of verbs `to be', `to have', `to do' and modal
   |
-  | быть  бы  буд  быв  есть  суть
-  | име
-  | дел
-  | мог   мож  мочь
-  | уме
-  | хоч  хот
-  | долж
-  | можн
-  | нужн
-  | нельзя
-
+  | ц┌ц≥ц■ц≤  ц┌ц≥  ц┌ц∙ц└  ц┌ц≥ц≈  ц┘ц⌠ц■ц≤  ц⌠ц∙ц■ц≤
+  | ц┴ц█ц┘
+  | ц└ц┘ц▄
+  | ц█ц▐ц┤   ц█ц▐ц√  ц█ц▐ц·ц≤
+  | ц∙ц█ц┘
+  | ц┬ц▐ц·  ц┬ц▐ц■
+  | ц└ц▐ц▄ц√
+  | ц█ц▐ц√ц▌
+  | ц▌ц∙ц√ц▌
+  | ц▌ц┘ц▄ц≤ц ц▒
