@@ -19,8 +19,24 @@ class Normalizr:
                     word = fields[0].strip()
                     if word: self.__stop_words.add(word)
 
-    def normalize(self, text):
-        pass
+    def normalize(self, text, normalizations=None):
+        if normalizations is None:
+            normalizations = ['whitespaces', 'punctuation', 'accents', 'symbols', 'stopwords']
+
+        methods = {
+            'accents': self.remove_accent_marks(text),
+            'hyphens': self.replace_hyphens(text),
+            'punctuation': self.remove_punctuation(text),
+            'stopwords': self.remove_stop_words(text),
+            'symbols': self.remove_symbols(),
+            'whitespaces': self.remove_extra_whitespaces(text)
+        }
+
+        for normalization in normalizations:
+            text = methods[normalization]
+
+        return text
+
 
     def remove_accent_marks(self, text, format='NFKD', excluded=set()):
         return ''.join(c for c in unicodedata.normalize(format, text)
@@ -35,8 +51,9 @@ class Normalizr:
     def remove_punctuation(self, text):
         return ''.join(c for c in text if c not in string.punctuation)
 
-    def remove_stop_words(self, text):
-        return ' '.join(word for word in text.lower().split(' ') if word not in self.__stop_words)
+    def remove_stop_words(self, text, ignore_case=False):
+        return ' '.join(
+            word for word in text.split(' ') if (word.lower() if ignore_case else word) not in self.__stop_words)
 
     def remove_symbols(self, text, format='NFKD', excluded=set()):
         categories = set(['Mn', 'Sc', 'Sk', 'Sm', 'So'])
