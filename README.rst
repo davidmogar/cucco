@@ -1,15 +1,16 @@
+.. |br| raw:: html
+
+   <br />
+   
 .. image:: http://davidmogar.com/uploads/github/normalizr.png
-   :align: center
+|br|
 .. image:: https://img.shields.io/pypi/v/normalizr.svg
    :target: https://pypi.python.org/pypi/normalizr
-   :align: right
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://github.com/davidmogar/normalizr/blob/master/LICENSE
-   :align: right
 .. image:: https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg
    :target: https://gitter.im/davidmogar/normalizr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-   :align: right
-   
+
 Normalizr is a Python library for text normalization that allows the next actions:
 
 -  Remove accents.
