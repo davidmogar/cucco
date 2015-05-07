@@ -1,6 +1,6 @@
 .. image:: http://davidmogar.com/uploads/github/normalizr.png
 
-Normalizr is a Python library for text normalization that offer a bunch of actions to manipulate your text as much as your want. With normalizr you can replace symbols, puntuations marks, remove stop words and much more.
+Normalizr is a Python library for text normalization that offer a bunch of actions to manipulate your text as much as you want. With normalizr you can replace symbols, punctuation, remove stop words and much more.
 
 .. image:: https://img.shields.io/pypi/v/normalizr.svg?style=flat-square
    :target: https://pypi.python.org/pypi/normalizr
