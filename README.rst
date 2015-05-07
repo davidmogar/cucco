@@ -1,9 +1,5 @@
-.. |br| raw:: html
-
-   <br />
-   
 .. image:: http://davidmogar.com/uploads/github/normalizr.png
-|br|
+
 .. image:: https://img.shields.io/pypi/v/normalizr.svg
    :target: https://pypi.python.org/pypi/normalizr
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
