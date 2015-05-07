@@ -96,34 +96,6 @@ class Normalizr:
         """
         return ' '.join(text.strip().split())
 
-    def replace_hyphens(self, text, replacement=' '):
-        """
-        Remove hyphens from input text.
-
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace hyphens.
-
-        Returns:
-            The text without hyphens.
-        """
-        return text.replace('-', replacement)
-
-    def remove_punctuation(self, text, excluded=set()):
-        """
-        Remove punctuation from input text.
-
-        This function will remove characters from string.punctuation.
-
-        Params:
-            text (string): The text to be processed.
-            excluded (set): Set of characters to exclude.
-
-        Returns:
-            The text without punctuation.
-        """
-        return ''.join(c for c in text if c not in self.__punctuation or c in excluded)
-
     def remove_stop_words(self, text, ignore_case=True):
         """
         Remove stop words.
@@ -140,18 +112,48 @@ class Normalizr:
         return ' '.join(
             word for word in text.split(' ') if (word.lower() if ignore_case else word) not in self.__stop_words)
 
-    def remove_symbols(self, text, format='NFKD', excluded=set()):
+    def replace_hyphens(self, text, replacement=' '):
         """
-        Remove symbols from input text.
+        Replace hyphens from input text with a whitespace or a string if specified.
+
+        Params:
+            text (string): The text to be processed.
+            replacement (string): New text that will replace hyphens.
+
+        Returns:
+            The text without hyphens.
+        """
+        return text.replace('-', replacement)
+
+    def replace_punctuation(self, text, excluded=set(), replacement='',):
+        """
+        Remove punctuation from input text or replace them with a string if specified.
+
+        This function will remove characters from string.punctuation.
+
+        Params:
+            text (string): The text to be processed.
+            excluded (set): Set of characters to exclude.
+            replacement (string): New text that will replace punctuation.
+
+        Returns:
+            The text without punctuation.
+        """
+        return ''.join(c if c not in self.__punctuation or c in excluded else replacement for c in text)
+
+    def replace_symbols(self, text, format='NFKD', excluded=set(), replacement=''):
+        """
+        Remove symbols from input text or replace them with a string if specified.
 
         Params:
             text (string): The text to be processed.
             format (string): Unicode format.
             excluded (set): Set of unicode characters to exclude.
+            replacement (string): New text that will replace symbols.
 
         Returns:
             The text without accent marks.
         """
         categories = set(['Mn', 'Sc', 'Sk', 'Sm', 'So'])
-        return ''.join(c for c in unicodedata.normalize(format, text)
-                       if unicodedata.category(c) not in categories or c in excluded)
+        return ''.join(c if unicodedata.category(c) not in categories or c in excluded else replacement
+                       for c in unicodedata.normalize(format, text))
