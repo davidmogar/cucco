@@ -8,25 +8,6 @@ Normalizr is a Python library for text normalization that offer a bunch of actio
 .. image:: https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg
    :target: https://gitter.im/davidmogar/normalizr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 
-Supported languages
--------------------
-
-At the moment, normalizr can remove stop words in these languages:
-
--  Danish (da)
--  Dutch (nl)
--  English (en, default)
--  Finnish (fi)
--  French (fr)
--  German (de)
--  Hungarian (hu)
--  Italian (it)
--  Norwegian (no)
--  Portuguese (pr)
--  Russian (ru)
--  Spanish (es)
--  Swedish (sv)
-
 Installation
 ------------
 
@@ -89,3 +70,22 @@ If you only need to apply one normalization, use one of these methods:
 -  remove_stop_wordd
 -  remove_symbols
 -  remove_extra_whitespaces
+
+Supported languages
+-------------------
+
+At the moment, normalizr can remove stop words in these languages:
+
+-  Danish (da)
+-  Dutch (nl)
+-  English (en, default)
+-  Finnish (fi)
+-  French (fr)
+-  German (de)
+-  Hungarian (hu)
+-  Italian (it)
+-  Norwegian (no)
+-  Portuguese (pr)
+-  Russian (ru)
+-  Spanish (es)
+-  Swedish (sv)
