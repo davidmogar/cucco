@@ -7,7 +7,7 @@ Normalizr is a Python library for text normalization that offer a bunch of actio
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://github.com/davidmogar/normalizr/blob/master/LICENSE
 .. image:: https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg
-   :target: https://gitter.im/davidmogar/normalizr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+   :target: https://gitter.im/davidmogar/normalizr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&style=flat-square
 
 Installation
 ------------
