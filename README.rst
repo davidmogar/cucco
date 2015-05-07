@@ -1,4 +1,6 @@
-.. image:: http://davidmogar.com/uploads/github/normalizr.png
+ .. image:: http://davidmogar.com/uploads/github/normalizr.png
+|
+|
 
 .. image:: https://img.shields.io/pypi/v/normalizr.svg
    :target: https://pypi.python.org/pypi/normalizr
