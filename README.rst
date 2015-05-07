@@ -1,5 +1,5 @@
 .. image:: http://davidmogar.com/uploads/github/normalizr.png
-   :align: middle
+   :align: center
 .. image:: https://img.shields.io/pypi/v/normalizr.svg
    :target: https://pypi.python.org/pypi/normalizr
    :align: right
