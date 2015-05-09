@@ -32,8 +32,7 @@ class Normalizr:
             for line in file:
                 fields = line.split('|')
                 if fields:
-                    word = fields[0].strip()
-                    if word: self.__stop_words.add(word)
+                    for word in fields[0].split(): self.__stop_words.add(word.strip())
 
     def normalize(self, text, normalizations=None):
         """
