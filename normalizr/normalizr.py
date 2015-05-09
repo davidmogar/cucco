@@ -169,4 +169,4 @@ class Normalizr:
         return highpoints.sub(replacement, text)
 
     def replace_urls(self, text, replacement=''):
-        return re.sub(regex.URL_REGEX, '', text)
+        return re.sub(regex.URL_REGEX, replacement, text)
