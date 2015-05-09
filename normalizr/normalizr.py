@@ -8,6 +8,10 @@ import normalizr.regex as regex
 
 path = os.path.dirname(__file__)
 
+DEFAULT_NORMALIZATIONS = [
+    'remove_extra_whitespaces', 'replace_punctuation', 'replace_symbols', 'remove_stop_words'
+]
+
 
 class Normalizr:
     """
@@ -38,19 +42,7 @@ class Normalizr:
                     for word in fields[0].split(): self.__stop_words.add(word.strip())
 
     def normalize(self, text, normalizations=None):
-        """
-        Normalize a given text applying all normalizations.
 
-        Normalizations to apply can be specified through a list parameter and will be executed
-        in the same order.
-
-        Params:
-            text (string): The text to be processed.
-            normalizations (list): List of normalizations to apply.
-
-        Returns:
-            The text normalized.
-        """
         if normalizations is None:
             normalizations = ['whitespaces', 'punctuation', 'symbols', 'stopwords']
 
@@ -67,6 +59,34 @@ class Normalizr:
             text = methods[normalization](text)
 
         return text
+
+    def _parse_normalizations(self, normalizations):
+        for normalization in normalizations:
+            if isinstance(normalization, str):
+                kwargs = {}
+            else:
+                normalization, kwargs = normalization
+
+            yield (normalization, kwargs)
+
+    def normalize(self, text, normalizations=None):
+        """
+        Normalize a given text applying all normalizations.
+
+        Normalizations to apply can be specified through a list parameter and will be executed
+        in the same order.
+
+        Params:
+            text (string): The text to be processed.
+            normalizations (list): List of normalizations to apply.
+
+        Returns:
+            The text normalized.
+        """
+        for normalization, kwargs in self._parse_normalizations(normalizations or DEFAULT_NORMALIZATIONS):
+            text = getattr(self, normalization)(text, **kwargs)
+        return text
+
 
     def remove_accent_marks(self, text, format='NFKD', excluded=set()):
         """
