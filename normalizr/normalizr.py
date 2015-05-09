@@ -1,7 +1,10 @@
 import codecs
 import os
+import re
 import string
 import unicodedata
+
+import normalizr.regex as regex
 
 path = os.path.dirname(__file__)
 
@@ -156,3 +159,6 @@ class Normalizr:
         categories = set(['Mn', 'Sc', 'Sk', 'Sm', 'So'])
         return ''.join(c if unicodedata.category(c) not in categories or c in excluded else replacement
                        for c in unicodedata.normalize(format, text))
+
+    def replace_urls(self, text, replacement=''):
+        return re.sub(regex.URL_REGEX, '', text)
