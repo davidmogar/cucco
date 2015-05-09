@@ -160,5 +160,13 @@ class Normalizr:
         return ''.join(c if unicodedata.category(c) not in categories or c in excluded else replacement
                        for c in unicodedata.normalize(format, text))
 
+    def replace_emojis(self, text, replacement=''):
+        try:
+            highpoints = re.compile(u'([\U00002600-\U000027BF])|([\U0001f300-\U0001f64F])|([\U0001f680-\U0001f6FF])')
+        except re.error:
+            highpoints = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')
+
+        return highpoints.sub(replacement, text)
+
     def replace_urls(self, text, replacement=''):
         return re.sub(regex.URL_REGEX, '', text)
