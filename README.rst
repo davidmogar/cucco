@@ -49,7 +49,13 @@ It's also possible to send a list of normalizations to apply, which will be exec
     from normalizr import Normalizr
 
     normalizr = Normalizr(language='en')
-    print(normalizr.normalize('Who    let   the dog out?', ['whitespaces', 'punctuation']))
+
+    normalizations = [
+        'remove_extra_whitespaces',
+        ('replace_punctuation', {'replacement': ' '})
+    ]
+
+    print(normalizr.normalize('Who    let   the dog out?', normalizations))
 
 Output:
 
