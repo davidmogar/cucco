@@ -60,11 +60,13 @@ Output:
 If you only need to apply one normalization, use one of these methods:
 
 -  remove_accent_marks
--  replace_hyphens
--  remove_punctuation
--  remove_stop_wordd
--  remove_symbols
 -  remove_extra_whitespaces
+-  remove_stop_words
+-  replace_emojis
+-  replace_hyphens
+-  replace_punctuation
+-  replace_symbols
+-  replace_urls
 
 Supported languages
 -------------------
