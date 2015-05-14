@@ -87,21 +87,20 @@ class Normalizr:
             text = getattr(self, normalization)(text, **kwargs)
         return text
 
-
-    def remove_accent_marks(self, text, format='NFKD', excluded=set()):
+    def remove_accent_marks(self, text, excluded=set()):
         """
         Remove accent marks from input text.
 
         Params:
             text (string): The text to be processed.
-            format (string): Unicode format.
             excluded (set): Set of unicode characters to exclude.
 
         Returns:
             The text without accent marks.
         """
-        return ''.join(c for c in unicodedata.normalize(format, text)
-                       if unicodedata.category(c) != 'Mn' or c in excluded)
+
+        return unicodedata.normalize('NFKC', ''.join(c for c in unicodedata.normalize('NFKD', text)
+                       if unicodedata.category(c) != 'Mn' or c in excluded))
 
     def remove_extra_whitespaces(self, text):
         """
