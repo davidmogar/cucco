@@ -1,3 +1,3 @@
-__version__ = '0.1.7.1'
+__version__ = '0.1.8'
 
 from normalizr.normalizr import Normalizr
