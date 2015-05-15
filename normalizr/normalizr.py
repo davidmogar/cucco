@@ -19,12 +19,16 @@ class Normalizr:
 
     Attributes:
         language (string): Language used for normalization.
+        lazy_load (boolean): Whether or not lazy load files.
     """
     __punctuation = set(string.punctuation)
-    __stop_words = set()
 
-    def __init__(self, language='en'):
-        self._load_stop_words(language)
+    def __init__(self, language='en', lazy_load=False):
+        self.__language = language
+        self.__stop_words = set()
+
+        if not lazy_load:
+            self._load_stop_words(language)
 
     def _load_stop_words(self, language):
         """
@@ -35,6 +39,7 @@ class Normalizr:
         Params:
             language (string): Language code.
         """
+        print('loading')
         with codecs.open(os.path.join(path, 'data/stop-' + language), 'r', 'UTF-8') as file:
             for line in file:
                 fields = line.split('|')
@@ -129,6 +134,9 @@ class Normalizr:
         Returns:
             The text without stop words.
         """
+        if not self.__stop_words:
+            self._load_stop_words(self.__language)
+
         return ' '.join(
             word for word in text.split(' ') if (word.lower() if ignore_case else word) not in self.__stop_words)
 
