@@ -88,7 +88,7 @@ At the moment, normalizr can remove stop words in these languages:
 -  Hungarian (hu)
 -  Italian (it)
 -  Norwegian (no)
--  Portuguese (pr)
+-  Portuguese (pt)
 -  Russian (ru)
 -  Spanish (es)
 -  Swedish (sv)
