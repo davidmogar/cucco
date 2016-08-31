@@ -1,4 +1,5 @@
 import codecs
+import logging
 import os
 import re
 import string
@@ -23,12 +24,26 @@ class Normalizr:
     """
     __punctuation = set(string.punctuation)
 
-    def __init__(self, language='en', lazy_load=False):
+    def __init__(self, language='en', lazy_load=False, logger_level=logging.INFO):
         self.__language = language
+        self.__logger = self._get_logger(logger_level)
         self.__stop_words = set()
 
         if not lazy_load:
             self._load_stop_words(language)
+
+    def _get_logger(self, level):
+        """
+        Initialize logger.
+
+        Params:
+            level (integer): Log level as defined in logging.
+        """
+        logging.basicConfig()
+        logger = logging.getLogger("Normalizr")
+        logger.setLevel(level)
+
+        return logger
 
     def _load_stop_words(self, language):
         """
@@ -39,7 +54,7 @@ class Normalizr:
         Params:
             language (string): Language code.
         """
-        print('loading')
+        self.__logger.debug('loading stop words')
         with codecs.open(os.path.join(path, 'data/stop-' + language), 'r', 'UTF-8') as file:
             for line in file:
                 fields = line.split('|')
