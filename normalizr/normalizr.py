@@ -1,9 +1,12 @@
+from __future__ import absolute_import
+
 import codecs
 import logging
 import os
 import re
 import string
 import unicodedata
+import sys
 
 import normalizr.regex as regex
 

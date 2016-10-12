@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+# vim:fileencoding=utf-8
 """
 Regular expression to match URLs as seen on http://daringfireball.net/2010/07/improved_regex_for_matching_urls
 """
