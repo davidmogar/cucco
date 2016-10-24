@@ -29,8 +29,7 @@ from normalizr import Normalizr
 normalizr = Normalizr(language='en')
 print(normalizr.normalize('Who let the dog out?'))
 ```
-
-        Note: Unicode strings are required. In case of using a Python version prior to 3.0, append a ``u`` before the text.
+> Note: Unicode strings are required. In case of using a Python version prior to 3.0, append a ``u`` before the text.
         
 This would apply all normalizations to the text `Who let the dog out?`. The output for this normaliations would be the next one:
 
