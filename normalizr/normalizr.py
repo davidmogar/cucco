@@ -40,7 +40,7 @@ class Normalizr:
         language (string): Language used for normalization.
         lazy_load (boolean): Whether or not lazy load files.
     """
-    __punctuation = set(string.punctuation)
+    __punctuation = string.punctuation
 
     def __init__(self, language='en', lazy_load=False, logger_level=logging.INFO):
         self.__language = language
@@ -180,7 +180,7 @@ class Normalizr:
         """
         return text.replace('-', replacement)
 
-    def replace_punctuation(self, text, excluded=set(), replacement='',):
+    def replace_punctuation(self, text, excluded=set(), replacement=''):
         """
         Remove punctuation from input text or replace them with a string if specified.
 
@@ -194,7 +194,8 @@ class Normalizr:
         Returns:
             The text without punctuation.
         """
-        return ''.join(c if c not in self.__punctuation or c in excluded else replacement for c in text)
+        punct = string_translate(self.__punctuation, del_chars=''.join(excluded))
+        return self.replace_characters(text, characters=punct, replacement=replacement)
 
     def replace_symbols(self, text, format='NFKD', excluded=set(), replacement=''):
         """
