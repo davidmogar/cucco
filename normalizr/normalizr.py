@@ -64,33 +64,9 @@ class Normalizr:
                 if fields:
                     for word in fields[0].split(): self.__stop_words.add(word.strip())
 
-    def normalize(self, text, normalizations=None):
-
-        if normalizations is None:
-            normalizations = ['whitespaces', 'punctuation', 'symbols', 'stopwords']
-
-        methods = {
-            'accents': self.remove_accent_marks,
-            'hyphens': self.replace_hyphens,
-            'punctuation': self.remove_punctuation,
-            'stopwords': self.remove_stop_words,
-            'symbols': self.remove_symbols,
-            'whitespaces': self.remove_extra_whitespaces
-        }
-
-        for normalization in normalizations:
-            text = methods[normalization](text)
-
-        return text
-
     def _parse_normalizations(self, normalizations):
         for normalization in normalizations:
-            if isinstance(normalization, str):
-                kwargs = {}
-            else:
-                normalization, kwargs = normalization
-
-            yield (normalization, kwargs)
+            yield (normalization, {}) if isinstance(normalization, str) else normalization
 
     def normalize(self, text, normalizations=None):
         """
@@ -137,7 +113,7 @@ class Normalizr:
         Returns:
             The text without extra whitespaces.
         """
-        return ' '.join(text.strip().split())
+        return ' '.join(text.split())
 
     def remove_stop_words(self, text, ignore_case=True):
         """
