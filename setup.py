@@ -4,7 +4,6 @@ import re
 
 from setuptools import setup, find_packages
 
-
 version = re.search(
     '^__version__\s*=\s*\'(.*)\'',
     open('normalizr/__init__.py').read(),
