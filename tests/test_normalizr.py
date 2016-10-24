@@ -22,6 +22,9 @@ class TestNormalizr(unittest.TestCase):
     def setUp(self):
         self._normalizr = normalizr.Normalizr()
 
+    def _fail_message(self, test_name):
+        return "failed in sub-test: %s" % test_name
+
     def test_remove_accent_marks(self):
         test_cases = [
             {
@@ -38,7 +41,7 @@ class TestNormalizr(unittest.TestCase):
 
         for test_case in test_cases:
             name, before, after = test_case['name'], test_case['before'], test_case['after']
-            self.assertEqual(self._normalizr.remove_accent_marks(before), after)
+            self.assertEqual(self._normalizr.remove_accent_marks(before), after, msg=self._fail_message(name))
 
     def test_remove_extra_whitespaces(self):
         test_cases = [
@@ -76,7 +79,7 @@ class TestNormalizr(unittest.TestCase):
 
         for test_case in test_cases:
             name, before, after = test_case['name'], test_case['before'], test_case['after']
-            self.assertEqual(self._normalizr.remove_extra_whitespaces(before), after)
+            self.assertEqual(self._normalizr.remove_extra_whitespaces(before), after, msg=self._fail_message(name))
 
     def test_replace_emojis(self):
         test_cases = [
@@ -106,7 +109,7 @@ class TestNormalizr(unittest.TestCase):
         for test_case in test_cases:
             name, before, kwargs, after = \
                 test_case['name'], test_case['before'], test_case.get('kwargs', dict()), test_case['after']
-            self.assertEqual(self._normalizr.replace_emojis(text=before, **kwargs), after)
+            self.assertEqual(self._normalizr.replace_emojis(text=before, **kwargs), after, msg=self._fail_message(name))
 
     def test_replace_hyphens(self):
         test_cases = [
@@ -136,7 +139,7 @@ class TestNormalizr(unittest.TestCase):
         for test_case in test_cases:
             name, before, kwargs, after = \
                 test_case['name'], test_case['before'], test_case.get('kwargs', dict()), test_case['after']
-            self.assertEqual(self._normalizr.replace_hyphens(text=before, **kwargs), after)
+            self.assertEqual(self._normalizr.replace_hyphens(text=before, **kwargs), after, msg=self._fail_message(name))
 
     def test_replace_punctuation(self):
         test_cases = [
@@ -147,19 +150,19 @@ class TestNormalizr(unittest.TestCase):
             },
             {
                 'name': 'no punctuation',
-                'before': "How let the dog out",
-                'after': "How let the dog out"
+                'before': "Who let the dog out",
+                'after': "Who let the dog out"
             },
             {
                 'name': 'question mark default replacement',
-                'before': "How let the dog out?",
-                'after': "How let the dog out"
+                'before': "Who let the dog out?",
+                'after': "Who let the dog out"
             },
             {
                 'name': 'question mark custom replacement',
-                'before': "How let the dog out?",
+                'before': "Who let the dog out?",
                 'kwargs': {'replacement': ' '},
-                'after': "How let the dog out "
+                'after': "Who let the dog out "
             },
             {
                 'name': 'simple sentence default replacement',
@@ -183,7 +186,8 @@ class TestNormalizr(unittest.TestCase):
         for test_case in test_cases:
             name, before, kwargs, after = \
                 test_case['name'], test_case['before'], test_case.get('kwargs', dict()), test_case['after']
-            self.assertEqual(self._normalizr.replace_punctuation(text=before, **kwargs), after)
+            self.assertEqual(self._normalizr.replace_punctuation(text=before, **kwargs), after,
+                             msg=self._fail_message(name))
 
     def test_replace_characters(self):
         test_cases = [
@@ -195,35 +199,35 @@ class TestNormalizr(unittest.TestCase):
             },
             {
                 'name': 'no characters',
-                'before': "How let the dog out?",
+                'before': "Who let the dog out?",
                 'characters': "",
-                'after': "How let the dog out?"
+                'after': "Who let the dog out?"
             },
             {
                 'name': 'vowels',
-                'before': "How let the dog out?",
+                'before': "Who let the dog out?",
                 'characters': "aeiouAEIOU",
-                'after': "Hw lt th dg t?"
+                'after': "Wh lt th dg t?"
             },
             {
                 'name': 'vowels to _',
-                'before': "How let the dog out?",
+                'before': "Who let the dog out?",
                 'characters': "aeiouAEIOU",
                 'kwargs': {'replacement': "_"},
-                'after': "H_w l_t th_ d_g __t?"
+                'after': "Wh_ l_t th_ d_g __t?"
             },
             {
                 'name': 'question mark',
-                'before': "How let the dog out?",
+                'before': "Who let the dog out?",
                 'characters': "?",
-                'after': "How let the dog out?"
+                'after': "Who let the dog out"
             },
             {
                 'name': 'question mark to exclamation mark',
-                'before': "How let the dog out?",
+                'before': "Who let the dog out?",
                 'characters': "?",
                 'kwargs': {'replacement': "!"},
-                'after': "How let the dog out!"
+                'after': "Who let the dog out!"
             },
         ]
 
@@ -231,7 +235,8 @@ class TestNormalizr(unittest.TestCase):
             name, before, characters, kwargs, after = \
                 test_case['name'], test_case['before'], test_case['characters'], test_case.get('kwargs', dict()), \
                 test_case['after']
-            self.assertEqual(self._normalizr.replace_characters(text=before, characters=characters, **kwargs), after)
+            self.assertEqual(self._normalizr.replace_characters(text=before, characters=characters, **kwargs), after,
+                             msg=self._fail_message(name))
 
 
 if __name__ == '__main__':
