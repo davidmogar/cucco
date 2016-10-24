@@ -22,10 +22,10 @@ manually:
     cd normalizr
     python setup.py install
 
-Python 3.3 & 3.4 are supported.
-
 Usage
 -----
+
+        Note: Unicode strings are required. In case of using a Python version prior to 3.0, append a ``u`` before the text.
 
 The next code shows a sample usage of this library:
 
@@ -41,6 +41,7 @@ Output:
 .. code::
 
     let dog
+
 
 It's also possible to send a list of normalizations to apply, which will be executed in order.
 
