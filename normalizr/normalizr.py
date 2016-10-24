@@ -5,6 +5,7 @@ import logging
 import os
 import re
 import string
+import sys
 import unicodedata
 import sys
 
@@ -12,9 +13,23 @@ import normalizr.regex as regex
 
 path = os.path.dirname(__file__)
 
+IS_PY3 = sys.version_info[0] == 3
+
 DEFAULT_NORMALIZATIONS = [
     'remove_extra_whitespaces', 'replace_punctuation', 'replace_symbols', 'remove_stop_words'
 ]
+
+
+def string_translate(s, from_chars='', to_chars='', del_chars=''):
+    if IS_PY3:
+        return s.translate(str.maketrans(from_chars, to_chars, del_chars))
+    else:
+        if isinstance(s, unicode):
+            trans = dict(zip(from_chars, to_chars))
+            trans.update(dict.fromkeys(del_chars))
+            return s.translate(trans)
+        else:
+            return s.translate(string.maketrans(from_chars, to_chars), del_chars)
 
 
 class Normalizr:
@@ -25,7 +40,7 @@ class Normalizr:
         language (string): Language used for normalization.
         lazy_load (boolean): Whether or not lazy load files.
     """
-    __punctuation = set(string.punctuation)
+    __punctuation = string.punctuation
 
     def __init__(self, language='en', lazy_load=False, logger_level=logging.INFO):
         self.__language = language
@@ -64,33 +79,9 @@ class Normalizr:
                 if fields:
                     for word in fields[0].split(): self.__stop_words.add(word.strip())
 
-    def normalize(self, text, normalizations=None):
-
-        if normalizations is None:
-            normalizations = ['whitespaces', 'punctuation', 'symbols', 'stopwords']
-
-        methods = {
-            'accents': self.remove_accent_marks,
-            'hyphens': self.replace_hyphens,
-            'punctuation': self.remove_punctuation,
-            'stopwords': self.remove_stop_words,
-            'symbols': self.remove_symbols,
-            'whitespaces': self.remove_extra_whitespaces
-        }
-
-        for normalization in normalizations:
-            text = methods[normalization](text)
-
-        return text
-
     def _parse_normalizations(self, normalizations):
         for normalization in normalizations:
-            if isinstance(normalization, str):
-                kwargs = {}
-            else:
-                normalization, kwargs = normalization
-
-            yield (normalization, kwargs)
+            yield (normalization, {}) if isinstance(normalization, str) else normalization
 
     def normalize(self, text, normalizations=None):
         """
@@ -137,7 +128,7 @@ class Normalizr:
         Returns:
             The text without extra whitespaces.
         """
-        return ' '.join(text.strip().split())
+        return ' '.join(text.split())
 
     def remove_stop_words(self, text, ignore_case=True):
         """
@@ -189,7 +180,7 @@ class Normalizr:
         """
         return text.replace('-', replacement)
 
-    def replace_punctuation(self, text, excluded=set(), replacement='',):
+    def replace_punctuation(self, text, excluded=set(), replacement=''):
         """
         Remove punctuation from input text or replace them with a string if specified.
 
@@ -203,7 +194,8 @@ class Normalizr:
         Returns:
             The text without punctuation.
         """
-        return ''.join(c if c not in self.__punctuation or c in excluded else replacement for c in text)
+        punct = string_translate(self.__punctuation, del_chars=''.join(excluded))
+        return self.replace_characters(text, characters=punct, replacement=replacement)
 
     def replace_symbols(self, text, format='NFKD', excluded=set(), replacement=''):
         """
@@ -222,6 +214,34 @@ class Normalizr:
         return ''.join(c if unicodedata.category(c) not in categories or c in excluded else replacement
                        for c in unicodedata.normalize(format, text))
 
+    def replace_characters(self, text, characters, replacement=''):
+        """
+        Remove custom characters from input text or replace them with a string if specified.
+
+        Params:
+            text (string): The text to be processed.
+            characters (string): Characters that will be replaced.
+            replacement (string): New text that will replace the custom characters.
+
+        Returns:
+            The text without the given characters.
+        """
+        # exit if nothing to replace
+        if not characters:
+            # TODO: consider raising a warning here
+            return text
+
+        if not replacement:
+            return string_translate(text, del_chars=characters)
+
+        replacement_char = characters[0]
+
+        if len(characters) > 2:
+            characters = characters[1:]
+            text = string_translate(text, from_chars=characters, to_chars=replacement_char * len(characters))
+
+        return text.replace(replacement_char, replacement)
+
     def replace_urls(self, text, replacement=''):
         """
         Remove URLs from input text or replace them with a string if specified.
@@ -234,3 +254,16 @@ class Normalizr:
             The text without URLs.
         """
         return re.sub(regex.URL_REGEX, replacement, text)
+
+    def replace_emails(self, text, replacement=''):
+        """
+        Remove email addresses from input text or replace them with a string if specified.
+
+        Params:
+            text (string): The text to be processed.
+            replacement (string): New text that will replace email addresses.
+
+        Returns:
+            The text without email addresses.
+        """
+        return re.sub(regex.EMAIL_REGEX, replacement, text)
