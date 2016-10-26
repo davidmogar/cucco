@@ -5,6 +5,7 @@ import logging
 import os
 import re
 import string
+import sys
 import unicodedata
 
 import normalizr.regex as regex
@@ -65,8 +66,10 @@ class Normalizr:
                     for word in fields[0].split(): self.__stop_words.add(word.strip())
 
     def _parse_normalizations(self, normalizations):
+        str_type = str if sys.version_info[0] > 2 else unicode
+
         for normalization in normalizations:
-            yield (normalization, {}) if isinstance(normalization, str) else normalization
+            yield (normalization, {}) if isinstance(normalization, str_type) else normalization
 
     def normalize(self, text, normalizations=None):
         """
