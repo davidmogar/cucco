@@ -66,7 +66,7 @@ class Normalizr:
                     for word in fields[0].split(): self.__stop_words.add(word.strip())
 
     def _parse_normalizations(self, normalizations):
-        str_type = str if sys.version_info[0] > 2 else unicode
+        str_type = str if sys.version_info[0] > 2 else (str, unicode)
 
         for normalization in normalizations:
             yield (normalization, {}) if isinstance(normalization, str_type) else normalization
