@@ -8,10 +8,14 @@ from normalizr import regex
 
 
 def findall_simple(pattern, string):
+    """Wrap re.findall that returns a list of matches, without groups."""
     return [x[0] if isinstance(x, tuple) else x for x in re.findall(pattern=pattern, string=string)]
 
 
 class TestRegex(unittest.TestCase):
+    def _fail_message(self, test_name):
+        return "failed in sub-test: %s" % test_name
+
     def test_find_urls(self):
         test_cases = [
             # (text, list of urls in text)
@@ -29,7 +33,7 @@ class TestRegex(unittest.TestCase):
 
         for test_case in test_cases:
             name, text, urls = test_case['name'], test_case['text'], test_case['urls']
-            self.assertListEqual(findall_simple(regex.URL_REGEX, text), urls)
+            self.assertListEqual(findall_simple(regex.URL_REGEX, text), urls, msg=self._fail_message(name))
 
     def test_find_emails(self):
         test_cases = [
@@ -48,7 +52,7 @@ class TestRegex(unittest.TestCase):
 
         for test_case in test_cases:
             name, text, emails = test_case['name'], test_case['text'], test_case['emails']
-            self.assertListEqual(findall_simple(regex.EMAIL_REGEX, text), emails)
+            self.assertListEqual(findall_simple(regex.EMAIL_REGEX, text), emails, msg=self._fail_message(name))
 
 
 if __name__ == '__main__':
