@@ -137,6 +137,19 @@ class Normalizr:
         return ' '.join(
             word for word in text.split(' ') if (word.lower() if ignore_case else word) not in self.__stop_words)
 
+    def replace_emails(self, text, replacement=''):
+        """
+        Remove email addresses from input text or replace them with a string if specified.
+
+        Params:
+            text (string): The text to be processed.
+            replacement (string): New text that will replace email addresses.
+
+        Returns:
+            The text without email addresses.
+        """
+        return re.sub(regex.EMAIL_REGEX, replacement, text)
+
     def replace_emojis(self, text, replacement=''):
         """
         Remove emojis from input text or replace them with a string if specified.
@@ -154,6 +167,30 @@ class Normalizr:
             highpoints = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')
 
         return highpoints.sub(replacement, text)
+
+    def replace_characters(self, text, characters, replacement=''):
+        """
+        Remove custom characters from input text or replace them with a string if specified.
+
+        Params:
+            text (string): The text to be processed.
+            characters (string): Characters that will be replaced.
+            replacement (string): New text that will replace the custom characters.
+
+        Returns:
+            The text without the given characters.
+        """
+        if not characters:
+            return text
+
+        characters = ''.join(sorted(characters))
+        if characters in self.__characters_regexes:
+            characters_regex = self.__characters_regexes[characters]
+        else:
+            characters_regex = re.compile("[%s]" % re.escape(characters))
+            self.__characters_regexes[characters] = characters_regex
+
+        return characters_regex.sub(replacement, text)
 
     def replace_hyphens(self, text, replacement=' '):
         """
@@ -207,30 +244,6 @@ class Normalizr:
         return ''.join(c if unicodedata.category(c) not in categories or c in excluded else replacement
                        for c in unicodedata.normalize(format, text))
 
-    def replace_characters(self, text, characters, replacement=''):
-        """
-        Remove custom characters from input text or replace them with a string if specified.
-
-        Params:
-            text (string): The text to be processed.
-            characters (string): Characters that will be replaced.
-            replacement (string): New text that will replace the custom characters.
-
-        Returns:
-            The text without the given characters.
-        """
-        if not characters:
-            return text
-
-        characters = ''.join(sorted(characters))
-        if characters in self.__characters_regexes:
-            characters_regex = self.__characters_regexes[characters]
-        else:
-            characters_regex = re.compile("[%s]" % re.escape(characters))
-            self.__characters_regexes[characters] = characters_regex
-
-        return characters_regex.sub(replacement, text)
-
     def replace_urls(self, text, replacement=''):
         """
         Remove URLs from input text or replace them with a string if specified.
@@ -243,16 +256,3 @@ class Normalizr:
             The text without URLs.
         """
         return re.sub(regex.URL_REGEX, replacement, text)
-
-    def replace_emails(self, text, replacement=''):
-        """
-        Remove email addresses from input text or replace them with a string if specified.
-
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace email addresses.
-
-        Returns:
-            The text without email addresses.
-        """
-        return re.sub(regex.EMAIL_REGEX, replacement, text)
