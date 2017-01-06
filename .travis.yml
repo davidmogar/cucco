@@ -16,3 +16,5 @@ install:
   - pip install coveralls
 script:
   - nosetests -v --with-coverage -c tests/travis-tests.cfg
+after_success:
+  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then coveralls; fi
