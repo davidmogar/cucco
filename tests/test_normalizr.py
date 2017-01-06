@@ -2,13 +2,16 @@
 from __future__ import absolute_import, unicode_literals
 
 import sys
-import unittest
+import six
 
 from normalizr import normalizr
 
-IS_PY3 = sys.version_info[0] == 3
+if six.PY3:
+    import unittest
+else:
+    import unittest2 as unittest
 
-if not IS_PY3:
+if six.PY2:
     from codecs import open
 
 
@@ -19,6 +22,8 @@ def read_file(path, encoding='utf-8'):
 
 
 class TestNormalizr(unittest.TestCase):
+    _normalizr = None
+
     def setUp(self):
         self._normalizr = normalizr.Normalizr()
 

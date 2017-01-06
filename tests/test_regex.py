@@ -2,9 +2,14 @@
 from __future__ import absolute_import, unicode_literals
 
 import re
-import unittest
+import six
 
 from normalizr import regex
+
+if six.PY3:
+    import unittest
+else:
+    import unittest2 as unittest
 
 
 def findall_simple(pattern, string):
