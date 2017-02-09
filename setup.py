@@ -9,7 +9,7 @@ version = re.search(
     open('normalizr/__init__.py').read(),
     re.M).group(1)
 
-with open("README.rst", "rb") as f:
+with open("README.md", "rb") as f:
     long_description = f.read().decode("utf-8")
 
 setup(name='normalizr',
