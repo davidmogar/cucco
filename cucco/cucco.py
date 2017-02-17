@@ -8,46 +8,54 @@ import string
 import sys
 import unicodedata
 
-import normalizr.regex as regex
+import cucco.regex as regex
 
-path = os.path.dirname(__file__)
+PATH = os.path.dirname(__file__)
 
 DEFAULT_NORMALIZATIONS = [
-    'remove_extra_whitespaces', 'replace_punctuation', 'replace_symbols', 'remove_stop_words'
+    'remove_extra_whitespaces',
+    'replace_punctuation',
+    'replace_symbols',
+    'remove_stop_words'
 ]
 
 
-class Normalizr:
+def get_logger(level):
+    """
+    Initialize logger.
+
+    Params:
+        level (integer): Log level as defined in logging.
+    """
+    logging.basicConfig()
+    logger = logging.getLogger("Cucco")
+    logger.setLevel(level)
+
+    return logger
+
+
+class Cucco:
     """
     This class offers methods for text normalization.
 
     Attributes:
         language (string): Language used for normalization.
-        lazy_load (boolean): Whether or not lazy load files.
+        lazy_load (boolean): Whether or not to lazy load files.
     """
     __punctuation = set(string.punctuation)
 
-    def __init__(self, language='en', lazy_load=False, logger_level=logging.INFO):
+    def __init__(
+            self,
+            language='en',
+            lazy_load=False,
+            logger_level=logging.INFO):
         self.__language = language
-        self.__logger = self._get_logger(logger_level)
+        self.__logger = get_logger(logger_level)
         self.__stop_words = set()
         self.__characters_regexes = dict()
 
         if not lazy_load:
             self._load_stop_words(language)
-
-    def _get_logger(self, level):
-        """
-        Initialize logger.
-
-        Params:
-            level (integer): Log level as defined in logging.
-        """
-        logging.basicConfig()
-        logger = logging.getLogger("Normalizr")
-        logger.setLevel(level)
-
-        return logger
 
     def _load_stop_words(self, language):
         """
@@ -59,13 +67,15 @@ class Normalizr:
             language (string): Language code.
         """
         self.__logger.debug('loading stop words')
-        with codecs.open(os.path.join(path, 'data/stop-' + language), 'r', 'UTF-8') as file:
+        with codecs.open(os.path.join(PATH, 'data/stop-' + language), 'r', 'UTF-8') as file:
             for line in file:
                 fields = line.split('|')
                 if fields:
-                    for word in fields[0].split(): self.__stop_words.add(word.strip())
+                    for word in fields[0].split():
+                        self.__stop_words.add(word.strip())
 
-    def _parse_normalizations(self, normalizations):
+    @staticmethod
+    def _parse_normalizations(normalizations):
         str_type = str if sys.version_info[0] > 2 else (str, unicode)
 
         for normalization in normalizations:
@@ -85,11 +95,14 @@ class Normalizr:
         Returns:
             The text normalized.
         """
-        for normalization, kwargs in self._parse_normalizations(normalizations or DEFAULT_NORMALIZATIONS):
+        for normalization, kwargs in self._parse_normalizations(
+                normalizations or DEFAULT_NORMALIZATIONS):
             text = getattr(self, normalization)(text, **kwargs)
+
         return text
 
-    def remove_accent_marks(self, text, excluded=set()):
+    @staticmethod
+    def remove_accent_marks(text, excluded=None):
         """
         Remove accent marks from input text.
 
@@ -100,10 +113,16 @@ class Normalizr:
         Returns:
             The text without accent marks.
         """
-        return unicodedata.normalize('NFKC', ''.join(c for c in unicodedata.normalize('NFKD', text)
-                       if unicodedata.category(c) != 'Mn' or c in excluded))
+        if excluded is None:
+            excluded = set()
 
-    def remove_extra_whitespaces(self, text):
+        return unicodedata.normalize(
+            'NFKC', ''.join(
+                c for c in unicodedata.normalize(
+                    'NFKD', text) if unicodedata.category(c) != 'Mn' or c in excluded))
+
+    @staticmethod
+    def remove_extra_whitespaces(text):
         """
         Remove extra whitespaces from input text.
 
@@ -134,35 +153,8 @@ class Normalizr:
         if not self.__stop_words:
             self._load_stop_words(self.__language)
 
-        return ' '.join(
-            word for word in text.split(' ') if (word.lower() if ignore_case else word) not in self.__stop_words)
-
-    def replace_emails(self, text, replacement=''):
-        """
-        Remove email addresses from input text or replace them with a string if specified.
-
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace email addresses.
-
-        Returns:
-            The text without email addresses.
-        """
-        return re.sub(regex.EMAIL_REGEX, replacement, text)
-
-    def replace_emojis(self, text, replacement=''):
-        """
-        Remove emojis from input text or replace them with a string if specified.
-
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace emojis.
-
-        Returns:
-            The text without hyphens.
-        """
-
-        return regex.EMOJI_REGEX.sub(replacement, text)
+        return ' '.join(word for word in text.split(' ') if (
+            word.lower() if ignore_case else word) not in self.__stop_words)
 
     def replace_characters(self, text, characters, replacement=''):
         """
@@ -188,7 +180,37 @@ class Normalizr:
 
         return characters_regex.sub(replacement, text)
 
-    def replace_hyphens(self, text, replacement=' '):
+    @staticmethod
+    def replace_emails(text, replacement=''):
+        """
+        Remove email addresses from input text or replace them with a string if specified.
+
+        Params:
+            text (string): The text to be processed.
+            replacement (string): New text that will replace email addresses.
+
+        Returns:
+            The text without email addresses.
+        """
+        return re.sub(regex.EMAIL_REGEX, replacement, text)
+
+    @staticmethod
+    def replace_emojis(text, replacement=''):
+        """
+        Remove emojis from input text or replace them with a string if specified.
+
+        Params:
+            text (string): The text to be processed.
+            replacement (string): New text that will replace emojis.
+
+        Returns:
+            The text without hyphens.
+        """
+
+        return regex.EMOJI_REGEX.sub(replacement, text)
+
+    @staticmethod
+    def replace_hyphens(text, replacement=' '):
         """
         Replace hyphens from input text with a whitespace or a string if specified.
 
@@ -221,26 +243,37 @@ class Normalizr:
             excluded = set(excluded)
         punct = ''.join(self.__punctuation.difference(excluded))
 
-        return self.replace_characters(text, characters=punct, replacement=replacement)
+        return self.replace_characters(
+            text, characters=punct, replacement=replacement)
 
-    def replace_symbols(self, text, format='NFKD', excluded=set(), replacement=''):
+    @staticmethod
+    def replace_symbols(
+            text,
+            form='NFKD',
+            excluded=None,
+            replacement=''):
         """
         Remove symbols from input text or replace them with a string if specified.
 
         Params:
             text (string): The text to be processed.
-            format (string): Unicode format.
+            form (string): Unicode form.
             excluded (set): Set of unicode characters to exclude.
             replacement (string): New text that will replace symbols.
 
         Returns:
             The text without symbols.
         """
-        categories = set(['Mn', 'Sc', 'Sk', 'Sm', 'So'])
-        return ''.join(c if unicodedata.category(c) not in categories or c in excluded else replacement
-                       for c in unicodedata.normalize(format, text))
+        if excluded is None:
+            excluded = set()
 
-    def replace_urls(self, text, replacement=''):
+        categories = set(['Mn', 'Sc', 'Sk', 'Sm', 'So'])
+
+        return ''.join(c if unicodedata.category(c) not in categories or c in excluded
+                       else replacement for c in unicodedata.normalize(form, text))
+
+    @staticmethod
+    def replace_urls(text, replacement=''):
         """
         Remove URLs from input text or replace them with a string if specified.
 

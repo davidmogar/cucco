@@ -1,2 +1,2 @@
-include normalizr/data/*
+include cucco/data/*
 include README.md
