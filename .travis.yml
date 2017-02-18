@@ -1,5 +1,4 @@
 language: python
-cache: pip
 python:
   # "2.6" not supported
   - "2.7"
@@ -10,11 +9,10 @@ python:
   - "3.6"
   - "3.6-dev" # 3.6 development branch
   - "nightly" # currently points to 3.7-dev
-# command to install dependencies
 install:
-  - pip install -r test_requirements.txt -r requirements.txt
+  - pip install -r requirements.txt
   - pip install coveralls
-script:
-  - nosetests -v --with-coverage -c tests/travis-tests.cfg
+  - pip install pytest
+script: pytest
 after_success:
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then coveralls; fi

@@ -1,0 +1,221 @@
+{
+  "tests": {
+    "remove_accent_marks": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "programacion ingles version codigo estandar filosofia",
+        "before": "programación inglés versión código estándar filosofía",
+        "message": "should remove accents in a lowercase text"
+      },
+      {
+        "after": "PROGRAMACION INGLES VERSION CODIGO ESTANDAR FILOSOFIA",
+        "before": "PROGRAMACIÓN INGLÉS VERSIÓN CÓDIGO ESTÁNDAR FILOSOFÍA",
+        "message": "should remove accents in an uppercase text"
+      }
+    ],
+    "remove_extra_whitespaces": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "Who let the cucco out?",
+        "before": "Who let the cucco out?",
+        "message": "should be equal"
+      },
+      {
+        "after": "Who let the cucco out?",
+        "before": "Who let\nthe cucco out?",
+        "message": "should remove newlines"
+      },
+      {
+        "after": "Who let the dog out?",
+        "before": "Who let  the dog out?",
+        "message": "should remove double whitespaces"
+      },
+      {
+        "after": "Who let the dog out?",
+        "before": " Who let the dog out? ",
+        "message": "should strip the text"
+      },
+      {
+        "after": "Who let the dog out?",
+        "before": " Who\tlet \n the dog out?\n\n\n\t",
+        "message": "should remove all extra whitespaces"
+      }
+    ],
+    "replace_emojis": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "No emoji",
+        "before": "No emoji",
+        "message": "should be equal"
+      },
+      {
+        "after": " Grinning face",
+        "before": "😀 Grinning face",
+        "message": "should remove the smiley"
+      },
+      {
+        "after": ":-) Grinning face",
+        "before": "😀 Grinning face",
+        "kwargs": {
+          "replacement": ":-)"
+        },
+        "message": "should replace the smiley"
+      }
+    ],
+    "replace_hyphens": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "Cucco cucco",
+        "before": "Cucco cucco",
+        "message": "should be equal"
+      },
+      {
+        "after": "Cucco cucco",
+        "before": "Cucco-cucco",
+        "message": "should replace hyphen with whitespace"
+      },
+      {
+        "after": "Cucco_cucco",
+        "before": "Cucco-cucco",
+        "kwargs": {
+          "replacement": "_"
+        },
+        "message": "should replace hyphen with underscore"
+      }
+    ],
+    "replace_punctuation": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "Who let the cucco out",
+        "before": "Who let the cucco out",
+        "message": "should be equal"
+      },
+      {
+        "after": "Who let the cucco out",
+        "before": "Who let the cucco out?",
+        "message": "should remove the question mark"
+      },
+      {
+        "after": "Who let the cucco out ",
+        "before": "Who let the cucco out?",
+        "kwargs": {
+          "replacement": " "
+        },
+        "message": "should replace the question mark with a whitespace"
+      },
+      {
+        "after": "Is that is that a Cucco Sure it is",
+        "before": "Is that... is that a Cucco? Sure it is!",
+        "message": "should remove all punctuation"
+      },
+      {
+        "after": "Is that___ is that a Cucco_ Sure it is_",
+        "before": "Is that... is that a Cucco? Sure it is!",
+        "kwargs": {
+          "replacement": "_"
+        },
+        "message": "should replace punctuation with underscores"
+      },
+      {
+        "after": "Is that... is that a Cucco Sure it is",
+        "before": "Is that... is that a Cucco? Sure it is!",
+        "kwargs": {
+          "excluded": [ "." ]
+        },
+        "message": "should exclude periods"
+      }
+    ],
+    "replace_characters": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "Who let the cucco out?",
+        "before": "Who let the cucco out?",
+        "characters": "",
+        "message": "should be equal"
+      },
+      {
+        "after": "Wh lt th ccc t?",
+        "before": "Who let the cucco out?",
+        "characters": "aeiouAEIOU",
+        "message": "should remove vowels"
+      },
+      {
+        "after": "Wh_ l_t th_ c_cc_ __t?",
+        "before": "Who let the cucco out?",
+        "characters": "aeiouAEIOU",
+        "kwargs": {
+          "replacement": "_"
+        },
+        "message": "should replace vowels with underscores"
+      },
+      {
+        "after": "Who let the cucco out",
+        "before": "Who let the cucco out?",
+        "characters": "?",
+        "message": "should remove the question mark"
+      },
+      {
+        "after": "Who let the cucco out!",
+        "before": "Who let the cucco out?",
+        "characters": "?",
+        "kwargs": {
+          "replacement": "!"
+        },
+        "message": "should replace the question mark with an exclamation mark"
+      }
+    ],
+    "find_urls": [
+      {
+        "message": "should do nothing",
+        "text": "",
+        "values": []
+      },
+      {
+        "message": "should match url",
+        "text": "http://github.com/davidmogar/cucco",
+        "values": [
+          "http://github.com/davidmogar/cucco"
+        ]
+      }
+    ],
+    "find_emails": [
+      {
+        "message": "should do nothing",
+        "text": "",
+        "values": []
+      },
+      {
+        "message": "should match email",
+        "text": "david.mogar@gmail.com",
+        "values": [
+          "david.mogar@gmail.com"
+        ]
+      }
+
+    ]
+  }
+}
