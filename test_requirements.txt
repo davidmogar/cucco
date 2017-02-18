@@ -1,2 +1,0 @@
-six>=1.10.0
-unittest2   # Comment this line out if using Python 3.
