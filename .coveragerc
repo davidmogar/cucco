@@ -1,7 +1,0 @@
-[run]
-source = normalizr
-
-[report]
-omit =
-  */python?.?/*
-  */site-packages/*
