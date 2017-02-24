@@ -17,6 +17,94 @@
         "message": "should remove accents in an uppercase text"
       }
     ],
+    "replace_characters": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "Who let the cucco out?",
+        "before": "Who let the cucco out?",
+        "characters": "",
+        "message": "should be equal"
+      },
+      {
+        "after": "Wh lt th ccc t?",
+        "before": "Who let the cucco out?",
+        "characters": "aeiouAEIOU",
+        "message": "should remove vowels"
+      },
+      {
+        "after": "Wh_ l_t th_ c_cc_ __t?",
+        "before": "Who let the cucco out?",
+        "characters": "aeiouAEIOU",
+        "kwargs": {
+          "replacement": "_"
+        },
+        "message": "should replace vowels with underscores"
+      },
+      {
+        "after": "Who let the cucco out",
+        "before": "Who let the cucco out?",
+        "characters": "?",
+        "message": "should remove the question mark"
+      },
+      {
+        "after": "Who let the cucco out!",
+        "before": "Who let the cucco out?",
+        "characters": "?",
+        "kwargs": {
+          "replacement": "!"
+        },
+        "message": "should replace the question mark with an exclamation mark"
+      }
+    ],
+    "replace_emails": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "Author: ",
+        "before": "Author: david.mogar@gmail.com",
+        "message": "should remove email"
+      },
+      {
+        "after": "Cucco EMAIL",
+        "before": "Cucco david.mogar@gmail.com",
+        "kwargs": {
+          "replacement": "EMAIL"
+        },
+        "message": "should replace email with EMAIL"
+      }
+    ],
+    "replace_emojis": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "No emoji",
+        "before": "No emoji",
+        "message": "should be equal"
+      },
+      {
+        "after": " Grinning face",
+        "before": "😀 Grinning face",
+        "message": "should remove the smiley"
+      },
+      {
+        "after": ":-) Grinning face",
+        "before": "😀 Grinning face",
+        "kwargs": {
+          "replacement": ":-)"
+        },
+        "message": "should replace the smiley"
+      }
+    ],
     "remove_extra_whitespaces": [
       {
         "after": "",
@@ -47,31 +135,6 @@
         "after": "Who let the dog out?",
         "before": " Who\tlet \n the dog out?\n\n\n\t",
         "message": "should remove all extra whitespaces"
-      }
-    ],
-    "replace_emojis": [
-      {
-        "after": "",
-        "before": "",
-        "message": "should be empty"
-      },
-      {
-        "after": "No emoji",
-        "before": "No emoji",
-        "message": "should be equal"
-      },
-      {
-        "after": " Grinning face",
-        "before": "😀 Grinning face",
-        "message": "should remove the smiley"
-      },
-      {
-        "after": ":-) Grinning face",
-        "before": "😀 Grinning face",
-        "kwargs": {
-          "replacement": ":-)"
-        },
-        "message": "should replace the smiley"
       }
     ],
     "replace_hyphens": [
@@ -145,47 +208,53 @@
         "message": "should exclude periods"
       }
     ],
-    "replace_characters": [
+    "replace_symbols": [
       {
         "after": "",
         "before": "",
         "message": "should be empty"
       },
       {
-        "after": "Who let the cucco out?",
-        "before": "Who let the cucco out?",
-        "characters": "",
-        "message": "should be equal"
+        "after": "Cucco (nene)",
+        "before": "Cucco (ñeñé)",
+        "message": "should normalize symbols"
       },
       {
-        "after": "Wh lt th ccc t?",
-        "before": "Who let the cucco out?",
-        "characters": "aeiouAEIOU",
-        "message": "should remove vowels"
-      },
-      {
-        "after": "Wh_ l_t th_ c_cc_ __t?",
-        "before": "Who let the cucco out?",
-        "characters": "aeiouAEIOU",
+        "after": "Cucco (n[weird n])",
+        "before": "Cucco (ñ)",
         "kwargs": {
-          "replacement": "_"
+          "replacement": "[weird n]"
         },
-        "message": "should replace vowels with underscores"
+        "message": "should replace symbol with [weird n]"
       },
       {
-        "after": "Who let the cucco out",
-        "before": "Who let the cucco out?",
-        "characters": "?",
-        "message": "should remove the question mark"
-      },
-      {
-        "after": "Who let the cucco out!",
-        "before": "Who let the cucco out?",
-        "characters": "?",
+        "after": "Cucco (ñ)",
+        "before": "Cucco (ñ)",
         "kwargs": {
-          "replacement": "!"
+          "excluded": [ "\u0303" ],
+          "format": "NFKC"
         },
-        "message": "should replace the question mark with an exclamation mark"
+        "message": "should keep ñ"
+      }
+    ],
+    "replace_urls": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "Cucco ",
+        "before": "Cucco https://github.com/davidmogar/normalizr",
+        "message": "should remove url"
+      },
+      {
+        "after": "Cucco URL",
+        "before": "Cucco https://github.com/davidmogar/normalizr",
+        "kwargs": {
+          "replacement": "URL"
+        },
+        "message": "should replace url with URL"
       }
     ],
     "find_urls": [
@@ -215,7 +284,6 @@
           "david.mogar@gmail.com"
         ]
       }
-
     ]
   }
 }
