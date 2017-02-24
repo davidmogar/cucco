@@ -35,22 +35,34 @@ class TestNormalizr:
         for after, before, _, _, message in self._tests_generator(request.node.name):
             assert self._normalizr.remove_accent_marks(before) == after, message
 
-    def test_remove_extra_whitespaces(self, request):
-        for after, before, _, _, message in self._tests_generator(request.node.name):
-            assert self._normalizr.remove_extra_whitespaces(before) == after, message
+    def test_replace_characters(self, request):
+        for after, before, characters, kwargs, message in self._tests_generator(request.node.name):
+            assert self._normalizr.replace_characters(text=before, characters=characters, **kwargs) == after, message
+
+    def test_replace_emails(self, request):
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            assert self._normalizr.replace_emails(text=before, **kwargs) == after, message
 
     def test_replace_emojis(self, request):
         for after, before, _, kwargs, message in self._tests_generator(request.node.name):
             assert self._normalizr.replace_emojis(text=before, **kwargs) == after, message
 
+    def test_remove_extra_whitespaces(self, request):
+        for after, before, _, _, message in self._tests_generator(request.node.name):
+            assert self._normalizr.remove_extra_whitespaces(before) == after, message
+
     def test_replace_hyphens(self, request):
         for after, before, _,  kwargs, message in self._tests_generator(request.node.name):
             assert self._normalizr.replace_hyphens(text=before, **kwargs) == after, message
 
-    def test_replace_characters(self, request):
-        for after, before, characters, kwargs, message in self._tests_generator(request.node.name):
-            assert self._normalizr.replace_characters(text=before, characters=characters, **kwargs) == after, message
-
     def test_replace_punctuation(self, request):
         for after, before, _, kwargs, message in self._tests_generator(request.node.name):
             assert self._normalizr.replace_punctuation(text=before, **kwargs) == after, message
+
+    def test_replace_symbols(self, request):
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            assert self._normalizr.replace_symbols(text=before, **kwargs) == after, message
+
+    def test_replace_urls(self, request):
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            assert self._normalizr.replace_urls(text=before, **kwargs) == after, message
