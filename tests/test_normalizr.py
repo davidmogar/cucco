@@ -31,9 +31,17 @@ class TestNormalizr:
     def setup_method(self):
         self._normalizr = normalizr.Normalizr()
 
+    def test_normalize(self, request):
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            assert self._normalizr.normalize(before, **kwargs) == after, message
+
     def test_remove_accent_marks(self, request):
         for after, before, _, _, message in self._tests_generator(request.node.name):
             assert self._normalizr.remove_accent_marks(before) == after, message
+
+    def test_remove_stop_words(self, request):
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            assert self._normalizr.remove_stop_words(before, **kwargs) == after, message
 
     def test_replace_characters(self, request):
         for after, before, characters, kwargs, message in self._tests_generator(request.node.name):
