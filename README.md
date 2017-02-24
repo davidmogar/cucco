@@ -1,4 +1,4 @@
-# normalizr [![Build Status](https://travis-ci.org/davidmogar/normalizr.svg?branch=master)](https://travis-ci.org/davidmogar/normalizr)
+# normalizr [![Build Status](https://travis-ci.org/davidmogar/normalizr.svg?branch=master)](https://travis-ci.org/davidmogar/normalizr) [![codecov](https://codecov.io/gh/davidmogar/normalizr/branch/master/graph/badge.svg)](https://codecov.io/gh/davidmogar/normalizr)
 
 Normalizr is a Python library for text normalization that offers a bunch of actions to manipulate your text as much as you want. With normalizr you can replace symbols, punctuation, remove stop words and much more.
 
