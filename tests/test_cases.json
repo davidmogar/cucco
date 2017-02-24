@@ -1,5 +1,33 @@
 {
   "tests": {
+    "normalize": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "cucco appeared backyard",
+        "before": " The   cucco appeared in the backyard? ",
+        "message": "should apply default normalizations"
+      },
+      {
+        "after": "The cucco appeared in the backyard?",
+        "before": " The   cucco appeared in the backyard? ",
+        "kwargs": {
+          "normalizations": [ "remove_extra_whitespaces" ]
+        },
+        "message": "should apply only custom normalizations"
+      },
+      {
+        "after": "The cucco appeared in the backyard?",
+        "before": " The   cucco appeared in the backyard? ",
+        "kwargs": {
+          "normalizations": [ "remove_extra_whitespaces" ]
+        },
+        "message": "should apply only custom normalizations"
+      }
+    ],
     "remove_accent_marks": [
       {
         "after": "",
@@ -15,6 +43,26 @@
         "after": "PROGRAMACION INGLES VERSION CODIGO ESTANDAR FILOSOFIA",
         "before": "PROGRAMACIÓN INGLÉS VERSIÓN CÓDIGO ESTÁNDAR FILOSOFÍA",
         "message": "should remove accents in an uppercase text"
+      }
+    ],
+    "remove_stop_words": [
+      {
+        "after": "",
+        "before": "",
+        "message": "should be empty"
+      },
+      {
+        "after": "cucco appeared backyard",
+        "before": "The cucco appeared in the backyard",
+        "message": "should remove stop words"
+      },
+      {
+        "after": "The cucco appeared backyard",
+        "before": "The cucco appeared in the backyard",
+        "kwargs": {
+          "ignore_case": false
+        },
+        "message": "should remove lowercase stop words"
       }
     ],
     "replace_characters": [
