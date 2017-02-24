@@ -11,6 +11,7 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install -U pytest
+  - pip install codecov
   - pip install pytest-cov
 script: pytest --cov=./
 after_success:
