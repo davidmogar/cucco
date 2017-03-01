@@ -11,7 +11,7 @@ import sys
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, PATH + '/../')
 
-from normalizr import regex
+from cucco import regex
 
 with open('tests/test_cases.json', 'r') as data:
     TESTS_DATA = json.load(data)

@@ -280,7 +280,7 @@
         "before": "Cucco (ñ)",
         "kwargs": {
           "excluded": [ "\u0303" ],
-          "format": "NFKC"
+          "form": "NFKC"
         },
         "message": "should keep ñ"
       }
