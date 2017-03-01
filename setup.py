@@ -9,23 +9,19 @@ version = re.search(
     open('cucco/__init__.py').read(),
     re.M).group(1)
 
-with open("README.md", "rb") as f:
-    long_description = f.read().decode("utf-8")
-
 setup(name='cucco',
       version=version,
       description='Python library for text normalization',
-      long_description=long_description,
       author='David Moreno-Garcia',
       author_email='david.mogar@gmail.com',
       license='MIT',
       url='https://github.com/davidmogar/cucco',
       download_url='https://github.com/davidmogar/cucco/tarball/' + version,
-      keywords=['normalize', 'text', 'manipulation'],
+      keywords=['normalization', 'language', 'text', 'manipulation'],
       packages=find_packages(exclude=['tests']),
       include_package_data=True,
       classifiers=[
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'Topic :: Software Development :: Libraries',
           'Intended Audience :: Developers',
           'Intended Audience :: Education',
