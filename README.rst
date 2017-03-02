@@ -43,7 +43,7 @@ Now that you have a cucco, I'll let him give you all the details.
 So true... so true...[tears falling down my face]. Just allow me to add
 some details.
 
-The next sample code shows how to normalize a short text:
+The next example code shows how to normalize a short text:
 
 .. code:: python
 
