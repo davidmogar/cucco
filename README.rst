@@ -1,5 +1,5 @@
-cucco |Build Status| |codecov|
-==============================
+cucco |Build Status| |codecov| |beerpay|
+========================================
 
 Is that... is that a cucco? Sure it is!
 
@@ -132,3 +132,5 @@ and tell about it there. Feedback is always great!
    :target: https://travis-ci.org/davidmogar/cucco
 .. |codecov| image:: https://codecov.io/gh/davidmogar/cucco/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/davidmogar/cucco
+.. |beerpay| image:: https://beerpay.io/davidmogar/cucco/badge.svg?style=flat
+   :target: https://beerpay.io/davidmogar/cucco
