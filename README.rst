@@ -31,8 +31,8 @@ all the hard way:
     $ cd cucco
     $ python setup.py install
 
-Got it. How I use it?
----------------------
+Got it. How do I use it?
+------------------------
 
 Now that you have a cucco, I'll let him give you all the details.
 
