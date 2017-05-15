@@ -1,112 +1,275 @@
-
-
- | A Dutch stop word list. Comments begin with vertical bar. Each stop
- | word is at the start of a line.
-
- | This is a ranked list (commonest to rarest) of stopwords derived from
- | a large sample of Dutch text.
-
- | Dutch stop words frequently exhibit homonym clashes. These are indicated
- | clearly below.
-
-de             |  the
-en             |  and
-van            |  of, from
-ik             |  I, the ego
-te             |  (1) chez, at etc, (2) to, (3) too
-dat            |  that, which
-die            |  that, those, who, which
-in             |  in, inside
-een            |  a, an, one
-hij            |  he
-het            |  the, it
-niet           |  not, nothing, naught
-zijn           |  (1) to be, being, (2) his, one's, its
-is             |  is
-was            |  (1) was, past tense of all persons sing. of 'zijn' (to be) (2) wax, (3) the washing, (4) rise of river
-op             |  on, upon, at, in, up, used up
-aan            |  on, upon, to (as dative)
-met            |  with, by
-als            |  like, such as, when
-voor           |  (1) before, in front of, (2) furrow
-had            |  had, past tense all persons sing. of 'hebben' (have)
-er             |  there
-maar           |  but, only
-om             |  round, about, for etc
-hem            |  him
-dan            |  then
-zou            |  should/would, past tense all persons sing. of 'zullen'
-of             |  or, whether, if
-wat            |  what, something, anything
-mijn           |  possessive and noun 'mine'
-men            |  people, 'one'
-dit            |  this
-zo             |  so, thus, in this way
-door           |  through by
-over           |  over, across
-ze             |  she, her, they, them
-zich           |  oneself
-bij            |  (1) a bee, (2) by, near, at
-ook            |  also, too
-tot            |  till, until
-je             |  you
-mij            |  me
-uit            |  out of, from
-der            |  Old Dutch form of 'van der' still found in surnames
-daar           |  (1) there, (2) because
-haar           |  (1) her, their, them, (2) hair
-naar           |  (1) unpleasant, unwell etc, (2) towards, (3) as
-heb            |  present first person sing. of 'to have'
-hoe            |  how, why
-heeft          |  present third person sing. of 'to have'
-hebben         |  'to have' and various parts thereof
-deze           |  this
-u              |  you
-want           |  (1) for, (2) mitten, (3) rigging
-nog            |  yet, still
-zal            |  'shall', first and third person sing. of verb 'zullen' (will)
-me             |  me
-zij            |  she, they
-nu             |  now
-ge             |  'thou', still used in Belgium and south Netherlands
-geen           |  none
-omdat          |  because
-iets           |  something, somewhat
-worden         |  to become, grow, get
-toch           |  yet, still
-al             |  all, every, each
-waren          |  (1) 'were' (2) to wander, (3) wares, (3)
-veel           |  much, many
-meer           |  (1) more, (2) lake
-doen           |  to do, to make
-toen           |  then, when
-moet           |  noun 'spot/mote' and present form of 'to must'
-ben            |  (1) am, (2) 'are' in interrogative second person singular of 'to be'
-zonder         |  without
-kan            |  noun 'can' and present form of 'to be able'
-hun            |  their, them
-dus            |  so, consequently
-alles          |  all, everything, anything
-onder          |  under, beneath
-ja             |  yes, of course
-eens           |  once, one day
-hier           |  here
-wie            |  who
-werd           |  imperfect third person sing. of 'become'
-altijd         |  always
-doch           |  yet, but etc
-wordt          |  present third person sing. of 'become'
-wezen          |  (1) to be, (2) 'been' as in 'been fishing', (3) orphans
-kunnen         |  to be able
-ons            |  us/our
-zelf           |  self
-tegen          |  against, towards, at
-na             |  after, near
-reeds          |  already
-wil            |  (1) present tense of 'want', (2) 'will', noun, (3) fender
-kon            |  could; past tense of 'to be able'
-niets          |  nothing
-uw             |  your
-iemand         |  somebody
-geweest        |  been; past participle of 'be'
-andere         |  other
+aan
+achte
+achter
+af
+al
+alle
+alleen
+alles
+als
+ander
+anders
+beetje
+behalve
+beide
+beiden
+ben
+beneden
+bent
+bij
+bijna
+bijv
+blijkbaar
+blijken
+boven
+bv
+daar
+daardoor
+daarin
+daarna
+daarom
+daaruit
+dan
+dat
+de
+deden
+deed
+derde
+derhalve
+dertig
+deze
+dhr
+die
+dit
+doe
+doen
+doet
+door
+drie
+duizend
+echter
+een
+eens
+eerst
+eerste
+eigen
+eigenlijk
+elk
+elke
+en
+enige
+er
+erg
+ergens
+etc
+etcetera
+even
+geen
+genoeg
+geweest
+haar
+haarzelf
+had
+hadden
+heb
+hebben
+hebt
+hedden
+heeft
+heel
+hem
+hemzelf
+hen
+het
+hetzelfde
+hier
+hierin
+hierna
+hierom
+hij
+hijzelf
+hoe
+honderd
+hun
+ieder
+iedere
+iedereen
+iemand
+iets
+ik
+in
+inderdaad
+intussen
+is
+ja
+je
+jij
+jijzelf
+jou
+jouw
+jullie
+kan
+kon
+konden
+kun
+kunnen
+kunt
+laatst
+later
+lijken
+lijkt
+maak
+maakt
+maakte
+maakten
+maar
+mag
+maken
+me
+meer
+meest
+meestal
+men
+met
+mevr
+mij
+mijn
+minder
+miss
+misschien
+missen
+mits
+mocht
+mochten
+moest
+moesten
+moet
+moeten
+mogen
+mr
+mrs
+mw
+na
+naar
+nam
+namelijk
+nee
+neem
+negen
+nemen
+nergens
+niemand
+niet
+niets
+niks
+noch
+nochtans
+nog
+nooit
+nu
+nv
+of
+om
+omdat
+ondanks
+onder
+ondertussen
+ons
+onze
+onzeker
+ooit
+ook
+op
+over
+overal
+overige
+paar
+per
+recent
+redelijk
+samen
+sinds
+steeds
+te
+tegen
+tegenover
+thans
+tien
+tiende
+tijdens
+tja
+toch
+toe
+tot
+totdat
+tussen
+twee
+tweede
+u
+uit
+uw
+vaak
+van
+vanaf
+veel
+veertig
+verder
+verscheidene
+verschillende
+via
+vier
+vierde
+vijf
+vijfde
+vijftig
+volgend
+volgens
+voor
+voordat
+voorts
+waar
+waarom
+waarschijnlijk
+wanneer
+waren
+was
+wat
+we
+wederom
+weer
+weinig
+wel
+welk
+welke
+werd
+werden
+werder
+whatever
+wie
+wij
+wijzelf
+wil
+wilden
+willen
+word
+worden
+wordt
+zal
+ze
+zei
+zeker
+zelf
+zelfde
+zes
+zeven
+zich
+zij
+zijn
+zijzelf
+zo
+zoals
+zodat
+zou
+zouden
+zulk
+zullen

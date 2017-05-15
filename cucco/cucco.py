@@ -68,11 +68,8 @@ class Cucco:
         """
         self.__logger.debug('loading stop words')
         with codecs.open(os.path.join(PATH, 'data/stop-' + language), 'r', 'UTF-8') as file:
-            for line in file:
-                fields = line.split('|')
-                if fields:
-                    for word in fields[0].split():
-                        self.__stop_words.add(word.strip())
+            for word in file:
+                self.__stop_words.add(word.strip())
 
     @staticmethod
     def _parse_normalizations(normalizations):

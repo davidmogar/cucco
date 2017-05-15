@@ -1,295 +1,619 @@
-
- | An Italian stop word list. Comments begin with vertical bar. Each stop
- | word is at the start of a line.
-
-ad             |  a (to) before vowel
-al             |  a + il
-allo           |  a + lo
-ai             |  a + i
-agli           |  a + gli
-all            |  a + l'
-agl            |  a + gl'
-alla           |  a + la
-alle           |  a + le
-con            |  with
-col            |  con + il
-coi            |  con + i (forms collo, cogli etc are now very rare)
-da             |  from
-dal            |  da + il
-dallo          |  da + lo
-dai            |  da + i
-dagli          |  da + gli
-dall           |  da + l'
-dagl           |  da + gll'
-dalla          |  da + la
-dalle          |  da + le
-di             |  of
-del            |  di + il
-dello          |  di + lo
-dei            |  di + i
-degli          |  di + gli
-dell           |  di + l'
-degl           |  di + gl'
-della          |  di + la
-delle          |  di + le
-in             |  in
-nel            |  in + el
-nello          |  in + lo
-nei            |  in + i
-negli          |  in + gli
-nell           |  in + l'
-negl           |  in + gl'
-nella          |  in + la
-nelle          |  in + le
-su             |  on
-sul            |  su + il
-sullo          |  su + lo
-sui            |  su + i
-sugli          |  su + gli
-sull           |  su + l'
-sugl           |  su + gl'
-sulla          |  su + la
-sulle          |  su + le
-per            |  through, by
-tra            |  among
-contro         |  against
-io             |  I
-tu             |  thou
-lui            |  he
-lei            |  she
-noi            |  we
-voi            |  you
-loro           |  they
-mio            |  my
-mia            |
-miei           |
-mie            |
-tuo            |
-tua            |
-tuoi           |  thy
-tue            |
-suo            |
-sua            |
-suoi           |  his, her
-sue            |
-nostro         |  our
-nostra         |
-nostri         |
-nostre         |
-vostro         |  your
-vostra         |
-vostri         |
-vostre         |
-mi             |  me
-ti             |  thee
-ci             |  us, there
-vi             |  you, there
-lo             |  him, the
-la             |  her, the
-li             |  them
-le             |  them, the
-gli            |  to him, the
-ne             |  from there etc
-il             |  the
-un             |  a
-uno            |  a
-una            |  a
-ma             |  but
-ed             |  and
-se             |  if
-perché         |  why, because
-anche          |  also
-come           |  how
-dov            |  where (as dov')
-dove           |  where
-che            |  who, that
-chi            |  who
-cui            |  whom
-non            |  not
-più            |  more
-quale          |  who, that
-quanto         |  how much
-quanti         |
-quanta         |
-quante         |
-quello         |  that
-quelli         |
-quella         |
-quelle         |
-questo         |  this
-questi         |
-questa         |
-queste         |
-si             |  yes
-tutto          |  all
-tutti          |  all
-
-               |  single letter forms:
-
-a              |  at
-c              |  as c' for ce or ci
-e              |  and
-i              |  the
-l              |  as l'
-o              |  or
-
-               | forms of avere, to have (not including the infinitive):
-
-ho
-hai
-ha
-abbiamo
-avete
-hanno
+IE
+a
+abbastanza
 abbia
-abbiate
+abbiamo
 abbiano
-avrò
-avrai
-avrà
-avremo
-avrete
-avranno
-avrei
-avresti
-avrebbe
-avremmo
-avreste
-avrebbero
-avevo
-avevi
+abbiate
+accidenti
+ad
+adesso
+affinche
+agl
+agli
+ahime
+ahimè
+ai
+al
+alcuna
+alcuni
+alcuno
+all
+alla
+alle
+allo
+allora
+altri
+altrimenti
+altro
+altrove
+altrui
+anche
+ancora
+anni
+anno
+ansa
+anticipo
+assai
+attesa
+attraverso
+avanti
+avemmo
+avendo
+avente
+aver
+avere
+averlo
+avesse
+avessero
+avessi
+avessimo
+aveste
+avesti
+avete
 aveva
 avevamo
-avevate
 avevano
-ebbi
-avesti
-ebbe
-avemmo
-aveste
-ebbero
-avessi
-avesse
-avessimo
-avessero
-avendo
-avuto
+avevate
+avevi
+avevo
+avrai
+avranno
+avrebbe
+avrebbero
+avrei
+avremmo
+avremo
+avreste
+avresti
+avrete
+avrà
+avrò
 avuta
-avuti
 avute
-
-               | forms of essere, to be (not including the infinitive):
-sono
-sei
-è
-siamo
-siete
-sia
-siate
-siano
-sarò
-sarai
-sarà
-saremo
-sarete
-saranno
-sarei
-saresti
-sarebbe
-saremmo
-sareste
-sarebbero
-ero
-eri
+avuti
+avuto
+basta
+bene
+benissimo
+berlusconi
+brava
+bravo
+c
+casa
+caso
+cento
+certa
+certe
+certi
+certo
+che
+chi
+chicchessia
+chiunque
+ci
+ciascuna
+ciascuno
+cima
+cio
+cioe
+cioè
+circa
+citta
+città
+ciò
+co
+codesta
+codesti
+codesto
+cogli
+coi
+col
+colei
+coll
+coloro
+colui
+come
+cominci
+comunque
+con
+concernente
+conciliarsi
+conclusione
+consiglio
+contro
+cortesia
+cos
+cosa
+cosi
+così
+cui
+d
+da
+dagl
+dagli
+dai
+dal
+dall
+dalla
+dalle
+dallo
+dappertutto
+davanti
+degl
+degli
+dei
+del
+dell
+della
+delle
+dello
+dentro
+detto
+deve
+di
+dice
+dietro
+dire
+dirimpetto
+diventa
+diventare
+diventato
+dopo
+dov
+dove
+dovra
+dovrà
+dovunque
+due
+dunque
+durante
+e
+ebbe
+ebbero
+ebbi
+ecc
+ecco
+ed
+effettivamente
+egli
+ella
+entrambi
+eppure
 era
+erano
 eravamo
 eravate
-erano
-fui
-fosti
-fu
-fummo
-foste
-furono
-fossi
-fosse
-fossimo
-fossero
+eri
+ero
+esempio
+esse
 essendo
-
-               | forms of fare, to do (not including the infinitive, fa, fat-):
-faccio
-fai
-facciamo
-fanno
+esser
+essere
+essi
+ex
+fa
 faccia
-facciate
+facciamo
 facciano
-farò
-farai
-farà
-faremo
-farete
-faranno
-farei
-faresti
-farebbe
-faremmo
-fareste
-farebbero
-facevo
-facevi
+facciate
+faccio
+facemmo
+facendo
+facesse
+facessero
+facessi
+facessimo
+faceste
+facesti
 faceva
 facevamo
-facevate
 facevano
-feci
-facesti
+facevate
+facevi
+facevo
+fai
+fanno
+farai
+faranno
+fare
+farebbe
+farebbero
+farei
+faremmo
+faremo
+fareste
+faresti
+farete
+farà
+farò
+fatto
+favore
 fece
-facemmo
-faceste
 fecero
-facessi
-facesse
-facessimo
-facessero
-facendo
-
-               | forms of stare, to be (not including the infinitive):
-sto
-stai
+feci
+fin
+finalmente
+finche
+fine
+fino
+forse
+forza
+fosse
+fossero
+fossi
+fossimo
+foste
+fosti
+fra
+frattempo
+fu
+fui
+fummo
+fuori
+furono
+futuro
+generale
+gia
+giacche
+giorni
+giorno
+già
+gli
+gliela
+gliele
+glieli
+glielo
+gliene
+governo
+grande
+grazie
+gruppo
+ha
+haha
+hai
+hanno
+ho
+i
+ieri
+il
+improvviso
+in
+inc
+infatti
+inoltre
+insieme
+intanto
+intorno
+invece
+io
+l
+la
+lasciato
+lato
+lavoro
+le
+lei
+li
+lo
+lontano
+loro
+lui
+lungo
+luogo
+là
+ma
+macche
+magari
+maggior
+mai
+male
+malgrado
+malissimo
+mancanza
+marche
+me
+medesimo
+mediante
+meglio
+meno
+mentre
+mesi
+mezzo
+mi
+mia
+mie
+miei
+mila
+miliardi
+milioni
+minimi
+ministro
+mio
+modo
+molti
+moltissimo
+molto
+momento
+mondo
+mosto
+nazionale
+ne
+negl
+negli
+nei
+nel
+nell
+nella
+nelle
+nello
+nemmeno
+neppure
+nessun
+nessuna
+nessuno
+niente
+no
+noi
+non
+nondimeno
+nonostante
+nonsia
+nostra
+nostre
+nostri
+nostro
+novanta
+nove
+nulla
+nuovo
+o
+od
+oggi
+ogni
+ognuna
+ognuno
+oltre
+oppure
+ora
+ore
+osi
+ossia
+ottanta
+otto
+paese
+parecchi
+parecchie
+parecchio
+parte
+partendo
+peccato
+peggio
+per
+perche
+perchè
+perché
+percio
+perciò
+perfino
+pero
+persino
+persone
+però
+piedi
+pieno
+piglia
+piu
+piuttosto
+più
+po
+pochissimo
+poco
+poi
+poiche
+possa
+possedere
+posteriore
+posto
+potrebbe
+preferibilmente
+presa
+press
+prima
+primo
+principalmente
+probabilmente
+proprio
+puo
+pure
+purtroppo
+può
+qualche
+qualcosa
+qualcuna
+qualcuno
+quale
+quali
+qualunque
+quando
+quanta
+quante
+quanti
+quanto
+quantunque
+quasi
+quattro
+quel
+quella
+quelle
+quelli
+quello
+quest
+questa
+queste
+questi
+questo
+qui
+quindi
+realmente
+recente
+recentemente
+registrazione
+relativo
+riecco
+salvo
+sara
+sarai
+saranno
+sarebbe
+sarebbero
+sarei
+saremmo
+saremo
+sareste
+saresti
+sarete
+sarà
+sarò
+scola
+scopo
+scorso
+se
+secondo
+seguente
+seguito
+sei
+sembra
+sembrare
+sembrato
+sembri
+sempre
+senza
+sette
+si
+sia
+siamo
+siano
+siate
+siete
+sig
+solito
+solo
+soltanto
+sono
+sopra
+sotto
+spesso
+srl
 sta
-stiamo
+stai
+stando
 stanno
-stia
-stiate
-stiano
-starò
 starai
-starà
-staremo
-starete
 staranno
-starei
-staresti
 starebbe
-staremmo
-stareste
 starebbero
-stavo
-stavi
+starei
+staremmo
+staremo
+stareste
+staresti
+starete
+starà
+starò
+stata
+state
+stati
+stato
 stava
 stavamo
-stavate
 stavano
-stetti
+stavate
+stavi
+stavo
+stemmo
+stessa
+stesse
+stessero
+stessi
+stessimo
+stesso
+steste
 stesti
 stette
-stemmo
-steste
 stettero
-stessi
-stesse
-stessimo
-stessero
-stando
+stetti
+stia
+stiamo
+stiano
+stiate
+sto
+su
+sua
+subito
+successivamente
+successivo
+sue
+sugl
+sugli
+sui
+sul
+sull
+sulla
+sulle
+sullo
+suo
+suoi
+tale
+tali
+talvolta
+tanto
+te
+tempo
+ti
+titolo
+torino
+tra
+tranne
+tre
+trenta
+troppo
+trovato
+tu
+tua
+tue
+tuo
+tuoi
+tutta
+tuttavia
+tutte
+tutti
+tutto
+uguali
+ulteriore
+ultimo
+un
+una
+uno
+uomo
+va
+vale
+vari
+varia
+varie
+vario
+verso
+vi
+via
+vicino
+visto
+vita
+voi
+volta
+volte
+vostra
+vostre
+vostri
+vostro
+è
