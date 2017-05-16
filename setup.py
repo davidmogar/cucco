@@ -21,7 +21,7 @@ setup(name='cucco',
       packages=find_packages(exclude=['tests']),
       entry_points={
           'console_scripts': [
-              'cucco=cucco.cli:main'
+              'cucco=cucco.cli:cli'
           ]
       },
       include_package_data=True,
