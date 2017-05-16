@@ -19,6 +19,11 @@ setup(name='cucco',
       download_url='https://github.com/davidmogar/cucco/tarball/' + version,
       keywords=['normalization', 'language', 'text', 'manipulation'],
       packages=find_packages(exclude=['tests']),
+      entry_points={
+          'console_scripts': [
+              'cucco=cucco.cli:main'
+          ]
+      },
       include_package_data=True,
       classifiers=[
           'Development Status :: 5 - Production/Stable',
