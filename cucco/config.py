@@ -25,7 +25,6 @@ class Config(object):
     """
 
     normalizations = DEFAULT_NORMALIZATIONS
-    verbose = False
 
     def	__init__(self, normalizations=None, verbose=False):
         """Inits Confic class."""
