@@ -5,6 +5,7 @@ from __future__ import absolute_import
 import click
 import sys
 
+from cucco.config import Config
 from cucco.cucco import Cucco
 
 @click.command()
@@ -45,7 +46,7 @@ def normalize(ctx, text):
             print(line)
 
 @click.group()
-@click.option('--config', '-c', type=click.File('rb'),
+@click.option('--config', '-c',
               help='Path to config file.')
 @click.option('--verbose', is_flag=True,
               help='Increase output verbosity.')
@@ -62,7 +63,8 @@ def cli(ctx, config, verbose):
     project website at https://cucco.io.
     """
 
-    ctx.obj['config'] = config # todo: Assing actual config content
+    ctx.obj = {}
+    ctx.obj['config'] = Config(config)
     ctx.obj['VERBOSE'] = verbose
 
 cli.add_command(batch)
