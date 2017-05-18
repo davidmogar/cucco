@@ -10,17 +10,11 @@ import unicodedata
 
 import cucco.regex as regex
 
+from cucco.config import Config
+
 PATH = os.path.dirname(__file__)
 
-DEFAULT_NORMALIZATIONS = [
-    'remove_extra_whitespaces',
-    'replace_punctuation',
-    'replace_symbols',
-    'remove_stop_words'
-]
-
-
-def get_logger(level):
+def get_logger():
     """
     Initialize logger.
 
@@ -29,12 +23,12 @@ def get_logger(level):
     """
     logging.basicConfig()
     logger = logging.getLogger("Cucco")
-    logger.setLevel(level)
+    logger.setLevel(logging.INFO)
 
     return logger
 
 
-class Cucco:
+class Cucco(object):
     """
     This class offers methods for text normalization.
 
@@ -46,13 +40,15 @@ class Cucco:
 
     def __init__(
             self,
+            config=Config(),
             language='en',
-            lazy_load=False,
-            logger_level=logging.INFO):
+            lazy_load=False):
+        self.__config = config
         self.__language = language
-        self.__logger = get_logger(logger_level)
-        self.__stop_words = set()
+
         self.__characters_regexes = dict()
+        self.__logger = get_logger()
+        self.__stop_words = set()
 
         if not lazy_load:
             self._load_stop_words(language)
@@ -93,7 +89,7 @@ class Cucco:
             The text normalized.
         """
         for normalization, kwargs in self._parse_normalizations(
-                normalizations or DEFAULT_NORMALIZATIONS):
+                normalizations or self.__config.normalizations):
             text = getattr(self, normalization)(text, **kwargs)
 
         return text
