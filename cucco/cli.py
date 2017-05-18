@@ -64,8 +64,7 @@ def cli(ctx, config, verbose):
     """
 
     ctx.obj = {}
-    ctx.obj['config'] = Config(config)
-    ctx.obj['VERBOSE'] = verbose
+    ctx.obj['config'] = Config(config, verbose)
 
 cli.add_command(batch)
 cli.add_command(normalize)
