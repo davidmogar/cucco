@@ -41,17 +41,15 @@ class Cucco(object):
     def __init__(
             self,
             config=Config(),
-            language='en',
             lazy_load=False):
         self.__config = config
-        self.__language = language
 
         self.__characters_regexes = dict()
         self.__logger = get_logger()
         self.__stop_words = set()
 
         if not lazy_load:
-            self._load_stop_words(language)
+            self._load_stop_words(self.__config.language)
 
     def _load_stop_words(self, language):
         """
@@ -63,7 +61,13 @@ class Cucco(object):
             language (string): Language code.
         """
         self.__logger.debug('loading stop words')
-        with codecs.open(os.path.join(PATH, 'data/stop-' + language), 'r', 'UTF-8') as file:
+        
+        file_path = 'data/stop-' + language
+        if not os.path.isfile(file_path):
+            file_path = 'data/stop-en'
+
+        with codecs.open(os.path.join(PATH, file_path),
+                         'r', 'UTF-8') as file:
             for word in file:
                 self.__stop_words.add(word.strip())
 
@@ -144,7 +148,7 @@ class Cucco(object):
             The text without stop words.
         """
         if not self.__stop_words:
-            self._load_stop_words(self.__language)
+            self._load_stop_words(self.__config.language)
 
         return ' '.join(word for word in text.split(' ') if (
             word.lower() if ignore_case else word) not in self.__stop_words)

@@ -20,14 +20,19 @@ class Config(object):
     used by the different modules.
 
     Attributes:
+        language: Language to be used for the normalizations.
         normalizations: List or path to config file.
         verbose: Level of output verbosity.
     """
 
     normalizations = DEFAULT_NORMALIZATIONS
 
-    def	__init__(self, normalizations=None, verbose=False):
+    def	__init__(self,
+                 language='en',
+                 normalizations=None,
+                 verbose=False):
         """Inits Confic class."""
+        self.language = language
         self.verbose = verbose
 
         if normalizations:

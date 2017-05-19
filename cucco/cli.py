@@ -48,11 +48,13 @@ def normalize(ctx, text):
 @click.group()
 @click.option('--config', '-c',
               help='Path to config file.')
+@click.option('--language', '-c', default='en',
+              help='Language to use for the normalization.')
 @click.option('--verbose', is_flag=True,
               help='Increase output verbosity.')
 @click.version_option()
 @click.pass_context
-def cli(ctx, config, verbose):
+def cli(ctx, config, language, verbose):
     """
     Cucco allows to apply normalizations to a given text or file.
     This normalizations include, among others, removal of accent
@@ -64,7 +66,7 @@ def cli(ctx, config, verbose):
     """
 
     ctx.obj = {}
-    ctx.obj['config'] = Config(config, verbose)
+    ctx.obj['config'] = Config(config, language, verbose)
 
 cli.add_command(batch)
 cli.add_command(normalize)
