@@ -89,7 +89,7 @@ Finally, if you only need to apply one normalization, use one of these methods:
 Supported languages
 -------------------
 
-You never know when a cucco will learn a new trick but. At the moment, they can remove stop words for 50 languages. The complete list can be `checked here <https://github.com/davidmogar/cucco/tree/master/cucco/data>`_. If you are looking for the source, you can find it in this `GitHub repository <https://github.com/6/stopwords-json>`_, which uses `json` for the stop words files.
+You never know when a cucco will learn a new trick. At the moment, they can remove stop words for 50 languages. The complete list can be `checked here <https://github.com/davidmogar/cucco/tree/master/cucco/data>`_. If you are looking for the source, you can find it in this `GitHub repository <https://github.com/6/stopwords-json>`_, which uses `json` for the stop words files.
 
 Can I contribute?
 -----------------
