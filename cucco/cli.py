@@ -5,8 +5,11 @@ from __future__ import absolute_import
 import click
 import sys
 
+import cucco.logging as logging
+
 from cucco.config import Config
 from cucco.cucco import Cucco
+
 
 @click.command()
 @click.argument('path')
@@ -20,7 +23,6 @@ def batch(ctx, path):
     file. If no config is specified, the default normalizations will
     be used.
     """
-
     pass
 
 @click.command()
@@ -40,21 +42,23 @@ def normalize(ctx, text):
     """
 
     if text:
-        print(ctx.obj['cucco'].normalize(text))
+        click.echo(ctx.obj['cucco'].normalize(text))
     else:
         for line in sys.stdin:
-            print(ctx.obj['cucco'].normalize(line))
+            click.echo(ctx.obj['cucco'].normalize(line))
 
 @click.group()
 @click.option('--config', '-c',
               help='Path to config file.')
+@click.option('--debug', is_flag=True,
+              help='Show debug messages.')
 @click.option('--language', '-l', default='en',
               help='Language to use for the normalization.')
 @click.option('--verbose', is_flag=True,
               help='Increase output verbosity.')
 @click.version_option()
 @click.pass_context
-def cli(ctx, config, language, verbose):
+def cli(ctx, config, debug, language, verbose):
     """
     Cucco allows to apply normalizations to a given text or file.
     This normalizations include, among others, removal of accent
@@ -64,11 +68,10 @@ def cli(ctx, config, language, verbose):
     For more info on how to use and configure Cucco, check the
     project website at https://cucco.io.
     """
-
     ctx.obj = {}
-    ctx.obj['config'] = Config(language, config, verbose)
+    ctx.obj['config'] = Config(debug, language, config, verbose)
     ctx.obj['cucco'] = Cucco(ctx.obj['config'])
-    print(ctx.obj['config'].normalizations)
+    ctx.obj['logger'] = logging.initialize_logger(debug)
 
 cli.add_command(batch)
 cli.add_command(normalize)

@@ -20,6 +20,7 @@ class Config(object):
     used by the different modules.
 
     Attributes:
+        debug: Wheter to show debug messages or not.
         language: Language to be used for the normalizations.
         normalizations: List or path to config file.
         verbose: Level of output verbosity.
@@ -28,10 +29,12 @@ class Config(object):
     normalizations = DEFAULT_NORMALIZATIONS
 
     def	__init__(self,
+                 debug=False,
                  language='en',
                  normalizations=None,
                  verbose=False):
         """Inits Confic class."""
+        self.debug = debug
         self.language = language
         self.verbose = verbose
 
