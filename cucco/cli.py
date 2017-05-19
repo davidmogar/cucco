@@ -40,15 +40,15 @@ def normalize(ctx, text):
     """
 
     if text:
-        print(text)
+        print(ctx.obj['cucco'].normalize(text))
     else:
         for line in sys.stdin:
-            print(line)
+            print(ctx.obj['cucco'].normalize(line))
 
 @click.group()
 @click.option('--config', '-c',
               help='Path to config file.')
-@click.option('--language', '-c', default='en',
+@click.option('--language', '-l', default='en',
               help='Language to use for the normalization.')
 @click.option('--verbose', is_flag=True,
               help='Increase output verbosity.')
@@ -66,7 +66,9 @@ def cli(ctx, config, language, verbose):
     """
 
     ctx.obj = {}
-    ctx.obj['config'] = Config(config, language, verbose)
+    ctx.obj['config'] = Config(language, config, verbose)
+    ctx.obj['cucco'] = Cucco(ctx.obj['config'])
+    print(ctx.obj['config'].normalizations)
 
 cli.add_command(batch)
 cli.add_command(normalize)
