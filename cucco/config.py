@@ -103,7 +103,10 @@ class Config(object):
 
         if isinstance(normalization, dict):
             if len(normalization.keys()) == 1:
-                parsed_normalization = normalization.items()[0]
+                items = normalization.items()[0]
+                if len(items) == 2: # Two elements tuple
+                    # Convert to string if no notmalizaation options
+                    parsed_normalization = items if items[1] else items[0]
         elif isinstance(normalization, STR_TYPE):
             parsed_normalization = normalization
 
