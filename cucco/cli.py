@@ -9,7 +9,7 @@ import cucco.logging as logging
 
 from cucco.config import Config
 from cucco.cucco import Cucco
-
+from cucco.errors import ConfigError
 
 @click.command()
 @click.argument('path')
@@ -40,7 +40,6 @@ def normalize(ctx, text):
     of another cli. This is the default behaviour when no text
     is defined.
     """
-
     if text:
         click.echo(ctx.obj['cucco'].normalize(text))
     else:
@@ -50,7 +49,7 @@ def normalize(ctx, text):
 @click.group()
 @click.option('--config', '-c',
               help='Path to config file.')
-@click.option('--debug', is_flag=True,
+@click.option('--debug', '-d', is_flag=True,
               help='Show debug messages.')
 @click.option('--language', '-l', default='en',
               help='Language to use for the normalization.')
@@ -69,9 +68,17 @@ def cli(ctx, config, debug, language, verbose):
     project website at https://cucco.io.
     """
     ctx.obj = {}
-    ctx.obj['config'] = Config(debug, language, config, verbose)
-    ctx.obj['cucco'] = Cucco(ctx.obj['config'])
+
+    # Instance logger before instancing the Config class
     ctx.obj['logger'] = logging.initialize_logger(debug)
+
+    try:
+        ctx.obj['config'] = Config(debug, language, config, verbose)
+    except ConfigError as e:
+        ctx.obj['logger'].error(e.message)
+        sys.exit(-1)
+
+    ctx.obj['cucco'] = Cucco(ctx.obj['config'])
 
 cli.add_command(batch)
 cli.add_command(normalize)

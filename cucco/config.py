@@ -1,8 +1,11 @@
 from __future__ import absolute_import
 
 import json
+import logging
 import sys
 import yaml
+
+from cucco.errors import ConfigError
 
 DEFAULT_NORMALIZATIONS = [
     'remove_extra_whitespaces',
@@ -11,6 +14,7 @@ DEFAULT_NORMALIZATIONS = [
     'remove_stop_words'
 ]
 STR_TYPE = str if sys.version_info[0] > 2 else (str, unicode)
+
 
 class Config(object):
     """
@@ -38,11 +42,15 @@ class Config(object):
         self.language = language
         self.verbose = verbose
 
+        self.logger = logging.getLogger('cucco')
+
         if normalizations:
             if not isinstance(normalizations, list):
                 normalizations = self._load_from_file(normalizations)
 
             self.normalizations = self._parse_normalizations(normalizations)
+        else:
+            self.logger.warning('Using default normalizations')
 
     def _load_from_file(self, path):
         """Load a config file from the given path.
@@ -60,11 +68,11 @@ class Config(object):
             with open(path, 'r') as config_file:
                 config = yaml.load(config_file)['normalizations']
         except EnvironmentError as e:
-            print('Problem while loading file: %s' % e.args[1] if len(e.args) > 1 else e)
+            raise ConfigError('Problem while loading file: %s' % e.args[1] if len(e.args) > 1 else e)
         except KeyError as e:
-            print('key %s' % e)
+            raise ConfigError('Config file has an unexpected structure: %s' % e)
         except yaml.YAMLError:
-            print('yaml syntax not correct')
+            raise ConfigError('Invalid YAML file syntax')
 
         return config
 
