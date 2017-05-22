@@ -40,9 +40,9 @@ class Cucco(object):
 
     def __init__(
             self,
-            config=Config(),
+            config=None,
             lazy_load=False):
-        self.__config = config
+        self.__config = config if config else Config()
 
         self.__characters_regexes = dict()
         self.__logger = get_logger()
