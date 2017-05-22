@@ -9,7 +9,7 @@ def initialize_logger(debug):
         debug: Wheter to use debug level or not
     """
     level = logging.DEBUG if debug else logging.INFO
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger('cucco')
     logger.setLevel(level)
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
     console_handler = logging.StreamHandler()
