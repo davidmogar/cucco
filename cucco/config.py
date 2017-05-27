@@ -18,14 +18,13 @@ STR_TYPE = str if sys.version_info[0] > 2 else (str, unicode)
 
 
 class Config(object):
-    """
-    Class to manage cucco configuration.
+    """Class to manage cucco configuration.
 
     This class allows to handle all cucco configuration and is
     used by the different modules.
 
     Attributes:
-        debug: Wheter to show debug messages or not.
+        debug: Whether to show debug messages or not.
         language: Language to be used for the normalizations.
         normalizations: List or path to config file.
         verbose: Level of output verbosity.
@@ -39,7 +38,7 @@ class Config(object):
                  logger=None,
                  debug=False,
                  verbose=False):
-        """Inits Confic class."""
+        """Inits Config class."""
         self.debug = debug
         self.language = language
         self.logger = logger or logging.initialize_logger(debug)
@@ -109,7 +108,7 @@ class Config(object):
             normalization: Normalization to parse.
 
         Returns:
-            Tuple or string containing the arsed normalization.
+            Tuple or string containing the parsed normalization.
         """
         parsed_normalization = None
 
@@ -117,7 +116,7 @@ class Config(object):
             if len(normalization.keys()) == 1:
                 items = normalization.items()[0]
                 if len(items) == 2: # Two elements tuple
-                    # Convert to string if no notmalizaation options
+                    # Convert to string if no normalization options
                     parsed_normalization = items if items[1] else items[0]
         elif isinstance(normalization, STR_TYPE):
             parsed_normalization = normalization

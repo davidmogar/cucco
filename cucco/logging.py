@@ -6,7 +6,10 @@ def initialize_logger(debug):
     """Set up logger to be used by the library.
 
     Args:
-        debug: Wheter to use debug level or not
+        debug: Wheter to use debug level or not.
+
+    Returns:
+        A logger ready to be used.
     """
     level = logging.DEBUG if debug else logging.INFO
     logger = logging.getLogger('cucco')

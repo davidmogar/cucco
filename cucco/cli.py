@@ -15,13 +15,13 @@ from cucco.errors import ConfigError
 @click.command()
 @click.argument('path')
 @click.option('--recursive', '-r', is_flag=True,
-              help='Wheter to search for files recursively.')
+              help='Whether to search for files recursively.')
 @click.option('--watch', '-w', is_flag=True,
               help='Watch for new files in the given path.')
 @click.pass_context
 def batch(ctx, path, recursive, watch):
     """
-    Normalize files in path.
+    Normalize files in a path.
 
     Apply normalizations over all files found in a given path.
     The normalizations applied will be those defined in the config
@@ -71,7 +71,7 @@ def cli(ctx, config, debug, language, verbose):
     """
     Cucco allows to apply normalizations to a given text or file.
     This normalizations include, among others, removal of accent
-    marks, stop words an extra whitespaces, replacement of
+    marks, stop words an extra white spaces, replacement of
     punctuation symbols, emails, emojis, etc.
 
     For more info on how to use and configure Cucco, check the

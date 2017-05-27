@@ -16,12 +16,11 @@ PATH = os.path.dirname(__file__)
 
 
 class Cucco(object):
-    """
-    This class offers methods for text normalization.
+    """This class offers methods for text normalization.
 
     Attributes:
-        language (string): Language used for normalization.
-        lazy_load (boolean): Whether or not to lazy load files.
+        config: Config to use.
+        lazy_load: Whether or not to lazy load files.
     """
     __punctuation = set(string.punctuation)
 
@@ -39,16 +38,15 @@ class Cucco(object):
             self._load_stop_words(self.__config.language)
 
     def _load_stop_words(self, language):
-        """
-        Load stop words into __stop_words set.
+        """Load stop words into __stop_words set.
 
         Stop words will be loaded according to the language code received during instantiation.
 
-        Params:
-            language (string): Language code.
+        Args:
+            language: Language code.
         """
         self.__logger.debug('Loading stop words')
-        
+
         file_path = 'data/stop-' + language
         if not os.path.isfile(file_path):
             file_path = 'data/stop-en'
@@ -66,15 +64,14 @@ class Cucco(object):
             yield (normalization, {}) if isinstance(normalization, str_type) else normalization
 
     def normalize(self, text, normalizations=None):
-        """
-        Normalize a given text applying all normalizations.
+        """Normalize a given text applying all normalizations.
 
-        Normalizations to apply can be specified through a list parameter and will be executed
-        in the same order.
+        Normalizations to apply can be specified through a list
+        parameter and will be executed in the same order.
 
-        Params:
-            text (string): The text to be processed.
-            normalizations (list): List of normalizations to apply.
+        Args:
+            text: The text to be processed.
+            normalizations: List of normalizations to apply.
 
         Returns:
             The text normalized.
@@ -87,12 +84,11 @@ class Cucco(object):
 
     @staticmethod
     def remove_accent_marks(text, excluded=None):
-        """
-        Remove accent marks from input text.
+        """Remove accent marks from input text.
 
-        Params:
-            text (string): The text to be processed.
-            excluded (set): Set of unicode characters to exclude.
+        Args:
+            text: The text to be processed.
+            excluded: Set of unicode characters to exclude.
 
         Returns:
             The text without accent marks.
@@ -107,14 +103,14 @@ class Cucco(object):
 
     @staticmethod
     def remove_extra_whitespaces(text):
-        """
-        Remove extra whitespaces from input text.
+        """Remove extra whitespaces from input text.
 
-        This function removes whitespaces from the beginning and the end of
-        the string, but also duplicated whitespaces between words.
+        This function removes whitespaces from the beginning and
+        the end of the string, but also duplicated whitespaces
+        between words.
 
-        Params:
-            text (string): The text to be processed.
+        Args:
+            text: The text to be processed.
 
         Returns:
             The text without extra whitespaces.
@@ -122,14 +118,14 @@ class Cucco(object):
         return ' '.join(text.split())
 
     def remove_stop_words(self, text, ignore_case=True):
-        """
-        Remove stop words.
+        """Remove stop words.
 
-        Stop words are loaded on class instantiation according with the specified language.
+        Stop words are loaded on class instantiation according
+        with the specified language.
 
-        Params:
-            text (string): The text to be processed.
-            ignore_case (boolean): Whether or not ignore case.
+        Args:
+            text: The text to be processed.
+            ignore_case: Whether or not ignore case.
 
         Returns:
             The text without stop words.
@@ -141,13 +137,15 @@ class Cucco(object):
             word.lower() if ignore_case else word) not in self.__stop_words)
 
     def replace_characters(self, text, characters, replacement=''):
-        """
-        Remove custom characters from input text or replace them with a string if specified.
+        """Remove characters from text.
 
-        Params:
-            text (string): The text to be processed.
-            characters (string): Characters that will be replaced.
-            replacement (string): New text that will replace the custom characters.
+        Remove custom characters from input text or replace them
+        with a string if specified.
+
+        Args:
+            text: The text to be processed.
+            characters: Characters that will be replaced.
+            replacement: New text that will replace the custom characters.
 
         Returns:
             The text without the given characters.
@@ -166,12 +164,14 @@ class Cucco(object):
 
     @staticmethod
     def replace_emails(text, replacement=''):
-        """
-        Remove email addresses from input text or replace them with a string if specified.
+        """Remove emails address from text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace email addresses.
+        Remove email addresses from input text or replace them
+        with a string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace email addresses.
 
         Returns:
             The text without email addresses.
@@ -180,27 +180,30 @@ class Cucco(object):
 
     @staticmethod
     def replace_emojis(text, replacement=''):
-        """
-        Remove emojis from input text or replace them with a string if specified.
+        """Remove emojis from text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace emojis.
+        Remove emojis from input text or replace them with a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace emojis.
 
         Returns:
             The text without hyphens.
         """
-
         return regex.EMOJI_REGEX.sub(replacement, text)
 
     @staticmethod
     def replace_hyphens(text, replacement=' '):
-        """
-        Replace hyphens from input text with a whitespace or a string if specified.
+        """Replace hyphens in text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace hyphens.
+        Replace hyphens from input text with a whitespace or a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace hyphens.
 
         Returns:
             The text without hyphens.
@@ -208,15 +211,16 @@ class Cucco(object):
         return text.replace('-', replacement)
 
     def replace_punctuation(self, text, excluded=None, replacement=''):
-        """
-        Remove punctuation from input text or replace them with a string if specified.
+        """Replace punctuation symbols in text.
 
-        This function will remove characters from string.punctuation.
+        Remove punctuation from input text or replace them with a
+        string if specified. Characters replaces will be those
+        in string.punctuation.
 
-        Params:
-            text (string): The text to be processed.
-            excluded (set): Set of characters to exclude.
-            replacement (string): New text that will replace punctuation.
+        Args:
+            text: The text to be processed.
+            excluded: Set of characters to exclude.
+            replacement: New text that will replace punctuation.
 
         Returns:
             The text without punctuation.
@@ -236,14 +240,16 @@ class Cucco(object):
             form='NFKD',
             excluded=None,
             replacement=''):
-        """
-        Remove symbols from input text or replace them with a string if specified.
+        """Replace symbols in text.
 
-        Params:
-            text (string): The text to be processed.
-            form (string): Unicode form.
-            excluded (set): Set of unicode characters to exclude.
-            replacement (string): New text that will replace symbols.
+        Remove symbols from input text or replace them with a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            form: Unicode form.
+            excluded: Set of unicode characters to exclude.
+            replacement: New text that will replace symbols.
 
         Returns:
             The text without symbols.
@@ -258,12 +264,14 @@ class Cucco(object):
 
     @staticmethod
     def replace_urls(text, replacement=''):
-        """
-        Remove URLs from input text or replace them with a string if specified.
+        """Replace URLs in text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace URLs.
+        Remove URLs from input text or replace them with a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace URLs.
 
         Returns:
             The text without URLs.
