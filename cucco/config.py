@@ -43,7 +43,7 @@ class Config(object):
         self.debug = debug
         self.language = language
         self.logger = logger or logging.initialize_logger(debug)
-        self.verbose = verbose
+        self.verbose = verbose or debug
 
         if normalizations:
             if not isinstance(normalizations, list):
