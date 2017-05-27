@@ -9,9 +9,9 @@ class Batch(object):
 
     def	__init__(self, config, cucco):
         """Inits Batch class."""
-        self._config = config
-        self._cucco = cucco
-        self._logger = config.logger
+        self.__config = config
+        self.__cucco = cucco
+        self.__logger = config.logger
 
     def _file_generator(self, path, recursive):
         if recursive:
@@ -32,20 +32,20 @@ class Batch(object):
 
         with open(output_path, 'w') as file:
             for line in self._line_generator(path):
-                file.write('%s\n' % self._cucco.normalize(line))
+                file.write('%s\n' % self.__cucco.normalize(line))
 
-        if self._config.debug:
-            self._logger.debug('Created file %s', output_path)
+        if self.__config.debug:
+            self.__logger.debug('Created file %s', output_path)
 
     def process_files(self, path, recursive=False):
-        self._logger.info('Processing files in %s', path)
+        self.__logger.info('Processing files in %s', path)
 
         for (path, file) in self._file_generator(path, recursive):
             if not file.endswith(BATCH_EXTENSION):
                 file_path = os.path.join(path, file)
 
-                if self._config.verbose:
-                    self._logger.info('Processing file %s', file_path)
+                if self.__config.verbose:
+                    self.__logger.info('Processing file %s', file_path)
 
                 self._process_file(file_path)
 
