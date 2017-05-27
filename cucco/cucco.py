@@ -45,7 +45,7 @@ class Cucco(object):
         self.__config = config if config else Config()
 
         self.__characters_regexes = dict()
-        self.__logger = config.logger
+        self.__logger = self.__config.logger
         self.__stop_words = set()
 
         if not lazy_load:
