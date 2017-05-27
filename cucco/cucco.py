@@ -40,7 +40,8 @@ class Cucco(object):
     def _load_stop_words(self, language):
         """Load stop words into __stop_words set.
 
-        Stop words will be loaded according to the language code received during instantiation.
+        Stop words will be loaded according to the language code
+        received during instantiation.
 
         Args:
             language: Language code.
@@ -58,6 +59,19 @@ class Cucco(object):
 
     @staticmethod
     def _parse_normalizations(normalizations):
+        """Parse and yield normalizations.
+
+        Parse normalizations parameter yielding all normalizations and
+        arguments found on it.
+
+        Args:
+            normalizations: List of normalizations.
+
+        Yields:
+            A tuple with a parsed normalization. The first item will
+            contain the normalization name and the second will be a dict
+            with the arguments to use for the normalization.
+        """
         str_type = str if sys.version_info[0] > 2 else (str, unicode)
 
         for normalization in normalizations:
@@ -86,6 +100,10 @@ class Cucco(object):
     def remove_accent_marks(text, excluded=None):
         """Remove accent marks from input text.
 
+        This function remove accent marks in the text, leaving
+        untouched unicode characters defined in the 'excluded'
+        parameter.
+
         Args:
             text: The text to be processed.
             excluded: Set of unicode characters to exclude.
@@ -103,17 +121,17 @@ class Cucco(object):
 
     @staticmethod
     def remove_extra_whitespaces(text):
-        """Remove extra whitespaces from input text.
+        """Remove extra white spaces from input text.
 
-        This function removes whitespaces from the beginning and
-        the end of the string, but also duplicated whitespaces
+        This function removes white spaces from the beginning and
+        the end of the string, but also duplicated white spaces
         between words.
 
         Args:
             text: The text to be processed.
 
         Returns:
-            The text without extra whitespaces.
+            The text without extra white spaces.
         """
         return ' '.join(text.split())
 
