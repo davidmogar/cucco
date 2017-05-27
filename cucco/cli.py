@@ -31,7 +31,7 @@ def batch(ctx, path, recursive, watch):
     batch = Batch(ctx.obj['config'], ctx.obj['cucco'])
 
     if watch:
-        pass
+        batch.watch(path, recursive)
     else:
         batch.process_files(path, recursive)
 
