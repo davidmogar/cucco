@@ -32,7 +32,7 @@ class Batch(object):
 
         with open(output_path, 'w') as file:
             for line in self._line_generator(path):
-                file.write(self._cucco.normalize(line))
+                file.write('%s\n' % self._cucco.normalize(line))
 
         if self._config.debug:
             self._logger.debug('Created file %s', output_path)
