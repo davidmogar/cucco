@@ -63,7 +63,7 @@ def normalize(ctx, text):
               help='Show debug messages.')
 @click.option('--language', '-l', default='en',
               help='Language to use for the normalization.')
-@click.option('--verbose', is_flag=True,
+@click.option('--verbose', '-v', is_flag=True,
               help='Increase output verbosity.')
 @click.version_option()
 @click.pass_context
