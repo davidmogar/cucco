@@ -14,19 +14,6 @@ from cucco.config import Config
 
 PATH = os.path.dirname(__file__)
 
-def get_logger():
-    """
-    Initialize logger.
-
-    Params:
-        level (integer): Log level as defined in logging.
-    """
-    logging.basicConfig()
-    logger = logging.getLogger("Cucco")
-    logger.setLevel(logging.INFO)
-
-    return logger
-
 
 class Cucco(object):
     """
