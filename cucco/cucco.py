@@ -60,7 +60,7 @@ class Cucco(object):
         Params:
             language (string): Language code.
         """
-        self.__logger.debug('loading stop words')
+        self.__logger.debug('Loading stop words')
         
         file_path = 'data/stop-' + language
         if not os.path.isfile(file_path):
