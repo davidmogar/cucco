@@ -10,6 +10,19 @@ BATCH_EXTENSION = '.cucco'
 
 
 class Batch(object):
+    """Class to apply normalizations in batch mode.
+
+    This class permits to apply normalizations over a group
+    of files. It counts with two modes. The first one works
+    over all the files in a directory and the second one
+    watch for new files in a given path. Both modes generate
+    new files with the result of the normalizations, letting
+    the original files unchanged.
+
+    Attributes:
+        config: Config to use.
+        cucco: Reference to cucco object.
+   """
 
     def	__init__(self, config, cucco):
         """Inits Batch class."""
@@ -19,6 +32,20 @@ class Batch(object):
         self.__cucco = cucco
 
     def _file_generator(self, path, recursive):
+        """Yield files found in a given path.
+
+        Walk over a given path finding and yielding all
+        files found on it. This can be done only on the root
+        directory or recursively.
+
+        Args:
+            path: Path to the directory.
+            recursive: Whether to find files recursively or not.
+
+        Yields:
+            A tuple for each file in the given path containing
+            the path and the name of the file.
+        """
         if recursive:
             for (path, dirs, files) in os.walk(path):
                 for file in files:
@@ -28,11 +55,31 @@ class Batch(object):
                 yield (path, file)
 
     def _line_generator(self, path):
+        """Yield lines in a given file.
+
+        Iterates over a file lines yielding them.
+
+        Args:
+            path: Path to the file.
+
+        Yields:
+            Lines on a given file.
+        """
         with open(path, 'r') as file:
             for line in file:
                 yield line
 
     def _process_file(self, path):
+        """Process a file applying normalizations.
+
+        Get a file as input and generate a new file with the
+        result of applying normalizations to every single line
+        in the original file. The extension for the new file
+        will be the one defined in BATCH_EXTENSION.
+
+        Args:
+            path: Path to the file.
+        """
         if self._config.verbose:
             self._logger.info('Processing file "%s"', path)
 
@@ -45,7 +92,40 @@ class Batch(object):
         if self._config.debug:
             self._logger.debug('Created file "%s"', output_path)
 
-    def _start_watcher(self, observer):
+    def process_files(self, path, recursive=False):
+        """Apply normalizations over all files in the given directory.
+
+        Iterate over all files in a given directory. Normalizations
+        will be applied to each file, storing the result in a new file.
+        The extension for the new file will be the one defined in
+        BATCH_EXTENSION.
+
+        Args:
+            path: Path to the directory.
+            recursive: Whether to find files recursively or not.
+        """
+        self._logger.info('Processing files in "%s"', path)
+
+        for (path, file) in self._file_generator(path, recursive):
+            if not file.endswith(BATCH_EXTENSION):
+                self._process_file(os.path.join(path, file))
+
+    def watch(self, path, recursive=False):
+        """Watch for files in a directory and apply normalizations.
+
+        Watch for new or changed files in a directory and apply
+        normalizations over them.
+
+        Args:
+            path: Path to the directory.
+            recursive: Whether to find files recursively or not.
+        """
+        self._logger.info('Initializing watcher for path "%s"', path)
+
+        handler = FileHandler(self)
+        observer = Observer()
+        observer.schedule(handler, path, recursive)
+
         self._logger.info('Starting watcher')
         observer.start()
 
@@ -60,23 +140,16 @@ class Batch(object):
 
         observer.join()
 
-    def process_files(self, path, recursive=False):
-        self._logger.info('Processing files in "%s"', path)
-
-        for (path, file) in self._file_generator(path, recursive):
-            if not file.endswith(BATCH_EXTENSION):
-                self._process_file(os.path.join(path, file))
-
-    def watch(self, path, recursive=False):
-        self._logger.info('Initializing watcher for path "%s"', path)
-
-        handler = FileHandler(self)
-        observer = Observer()
-        observer.schedule(handler, path, recursive)
-        self._start_watcher(observer)
-
 
 class FileHandler(FileSystemEventHandler):
+    """Handler to use by Batch watcher.
+
+    This class is used by Batch's watch mode. The handler will
+    listen for new and changed files.
+
+    Attributes:
+        batch: Reference to Batch object.
+    """
 
     def __init__(self, batch):
         """Inits Batch class."""
@@ -85,6 +158,15 @@ class FileHandler(FileSystemEventHandler):
         self.__logger = batch._logger
 
     def _process_event(self, event):
+        """Process received events.
+
+        Process events received, applying normalization for those
+        events referencing a new or changed file and only if it's
+        not the result of a previous normalization.
+
+        Args:
+            event: Event to process.
+        """
         if (not event.is_directory and
                 not event.src_path.endswith(BATCH_EXTENSION)):
             self.__logger.info('Detected file change: %s', event.src_path)
