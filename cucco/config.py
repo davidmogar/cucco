@@ -1,9 +1,10 @@
 from __future__ import absolute_import
 
 import json
-import logging
 import sys
 import yaml
+
+import cucco.logging as logging
 
 from cucco.errors import ConfigError
 
@@ -33,16 +34,16 @@ class Config(object):
     normalizations = DEFAULT_NORMALIZATIONS
 
     def	__init__(self,
-                 debug=False,
-                 language='en',
                  normalizations=None,
+                 language='en',
+                 logger=None,
+                 debug=False,
                  verbose=False):
         """Inits Confic class."""
         self.debug = debug
         self.language = language
+        self.logger = logger or logging.initialize_logger(debug)
         self.verbose = verbose
-
-        self.logger = logging.getLogger('cucco')
 
         if normalizations:
             if not isinstance(normalizations, list):

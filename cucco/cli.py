@@ -69,13 +69,13 @@ def cli(ctx, config, debug, language, verbose):
     """
     ctx.obj = {}
 
-    # Instance logger before instancing the Config class
-    ctx.obj['logger'] = logging.initialize_logger(debug)
-
     try:
-        ctx.obj['config'] = Config(debug, language, config, verbose)
+        ctx.obj['config'] = Config(normalizations=config,
+                                   language=language,
+                                   debug=debug,
+                                   verbose=verbose)
     except ConfigError as e:
-        ctx.obj['logger'].error(e.message)
+        click.echo(e.message)
         sys.exit(-1)
 
     ctx.obj['cucco'] = Cucco(ctx.obj['config'])
