@@ -11,7 +11,7 @@ def initialize_logger(debug):
     level = logging.DEBUG if debug else logging.INFO
     logger = logging.getLogger('cucco')
     logger.setLevel(level)
-    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    formatter = logging.Formatter('%(asctime)s %(levelname).1s %(message)s')
     console_handler = logging.StreamHandler()
     console_handler.setLevel(level)
     console_handler.setFormatter(formatter)
