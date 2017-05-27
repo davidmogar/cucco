@@ -7,14 +7,19 @@ import sys
 
 import cucco.logging as logging
 
+from cucco.batch import Batch
 from cucco.config import Config
 from cucco.cucco import Cucco
 from cucco.errors import ConfigError
 
 @click.command()
 @click.argument('path')
+@click.option('--recursive', '-r', is_flag=True,
+              help='Wheter to search for files recursively.')
+@click.option('--watch', '-w', is_flag=True,
+              help='Watch for new files in the given path.')
 @click.pass_context
-def batch(ctx, path):
+def batch(ctx, path, recursive, watch):
     """
     Normalize files in path.
 
@@ -23,7 +28,12 @@ def batch(ctx, path):
     file. If no config is specified, the default normalizations will
     be used.
     """
-    pass
+    batch = Batch(ctx.obj['config'], ctx.obj['cucco'])
+
+    if watch:
+        pass
+    else:
+        batch.process_files(path, recursive)
 
 @click.command()
 @click.argument('text', required=False)
