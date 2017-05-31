@@ -9,8 +9,8 @@ import cucco.logging as logging
 from cucco.errors import ConfigError
 
 DEFAULT_NORMALIZATIONS = [
-    'remove_extra_whitespaces',
     'replace_punctuation',
+    'remove_extra_whitespaces',
     'replace_symbols',
     'remove_stop_words'
 ]
@@ -45,7 +45,7 @@ class Config(object):
         self.verbose = verbose or debug
 
         if normalizations:
-            if not isinstance(normalizations, list):
+            if isinstance(normalizations, STR_TYPE):
                 normalizations = self._load_from_file(normalizations)
 
             self.normalizations = self._parse_normalizations(normalizations)
@@ -69,34 +69,12 @@ class Config(object):
                 config = yaml.load(config_file)['normalizations']
         except EnvironmentError as e:
             raise ConfigError('Problem while loading file: %s' % e.args[1] if len(e.args) > 1 else e)
-        except KeyError as e:
+        except (TypeError, KeyError) as e:
             raise ConfigError('Config file has an unexpected structure: %s' % e)
         except yaml.YAMLError:
             raise ConfigError('Invalid YAML file syntax')
 
         return config
-
-    def _parse_normalizations(self, normalizations):
-        """Returns a list of parsed normalizations.
-
-        Iterates over a list of normalizations, removing those
-        not correctly defined. It also transform complex items
-        to have a common format (list of tuples and strings).
-
-        Args:
-            normalizations: List of normalizations to parse.
-
-        Returns:
-            A list of normalizations after being parsed and curated.
-        """
-        parsed_normalizations = []
-
-        for item in normalizations:
-            normalization = self._parse_normalization(item)
-            if normalization:
-                parsed_normalizations.append(normalization)
-
-        return parsed_normalizations
 
     def _parse_normalization(self, normalization):
         """Parse a normalization item.
@@ -117,8 +95,36 @@ class Config(object):
                 items = normalization.items()[0]
                 if len(items) == 2: # Two elements tuple
                     # Convert to string if no normalization options
-                    parsed_normalization = items if items[1] else items[0]
+                    if items[1] and isinstance(items[1], dict):
+                        parsed_normalization = items
+                    else:
+                        parsed_normalization = items[0]
         elif isinstance(normalization, STR_TYPE):
             parsed_normalization = normalization
 
         return parsed_normalization
+
+    def _parse_normalizations(self, normalizations):
+        """Returns a list of parsed normalizations.
+
+        Iterates over a list of normalizations, removing those
+        not correctly defined. It also transform complex items
+        to have a common format (list of tuples and strings).
+
+        Args:
+            normalizations: List of normalizations to parse.
+
+        Returns:
+            A list of normalizations after being parsed and curated.
+        """
+        parsed_normalizations = []
+
+        if isinstance(normalizations, list):
+            for item in normalizations:
+                normalization = self._parse_normalization(item)
+                if normalization:
+                    parsed_normalizations.append(normalization)
+        else:
+            raise ConfigError('List expected. Found %s' % type(normalizations))
+
+        return parsed_normalizations

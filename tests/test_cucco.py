@@ -43,6 +43,11 @@ class TestCucco:
         for after, before, _, kwargs, message in self._tests_generator(request.node.name):
             assert self._cucco.remove_stop_words(before, **kwargs) == after, message
 
+        # Test lazy load
+        self._cucco = Cucco(lazy_load=True)
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            assert self._cucco.remove_stop_words(before, **kwargs) == after, message
+
     def test_replace_characters(self, request):
         for after, before, characters, kwargs, message in self._tests_generator(request.node.name):
             assert self._cucco.replace_characters(text=before, characters=characters, **kwargs) == after, message
