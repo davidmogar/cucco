@@ -59,7 +59,6 @@ class TestConfig(object):
                 'normalizations should be a list of 3 elements'
 
         for normalization in result:
-            print normalization
             assert (isinstance(normalization, dict) or
                     isinstance(normalization, STR_TYPE)), \
                 'all normalizations should be dictionaries'
