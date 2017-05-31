@@ -92,7 +92,7 @@ class Config(object):
 
         if isinstance(normalization, dict):
             if len(normalization.keys()) == 1:
-                items = normalization.items()[0]
+                items = list(normalization.items())[0]
                 if len(items) == 2: # Two elements tuple
                     # Convert to string if no normalization options
                     if items[1] and isinstance(items[1], dict):
