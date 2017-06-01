@@ -15,4 +15,4 @@ Regular expression to match email addresses as seen on http://www.wellho.net/res
 """
 EMAIL_REGEX = re.compile(r"[-a-z0-9_.]+@(?:[-a-z0-9]+\.)+[a-z]{2,6}", re.IGNORECASE)
 
-EMOJI_REGEX = re.compile(u'([\U00002600-\U000027BF])|([\U0001F300-\U0001F64F])|([\U0001F680-\U0001F6FF])')
+EMOJI_REGEX = re.compile(r'([\U00002600-\U000027BF\U0001F300-\U0001F64F\U0001F680-\U0001F6FF])')
