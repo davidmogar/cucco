@@ -49,10 +49,13 @@ class Batch(object):
         if recursive:
             for (path, dirs, files) in os.walk(path):
                 for file in files:
-                    yield (path, file)
+                    if not file.endswith(BATCH_EXTENSION):
+                        yield (path, file)
         else:
             for file in os.listdir(path):
-                yield (path, file)
+                if (os.path.isfile(os.path.join(path, file)) and
+                        not file.endswith(BATCH_EXTENSION)):
+                    yield (path, file)
 
     def _line_generator(self, path):
         """Yield lines in a given file.
