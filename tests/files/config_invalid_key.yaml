@@ -1,5 +1,0 @@
-not_expected_key:
-  - remove_extra_whitespaces:
-  - replace_punctuation:
-      replacement: ' '
-  - remove_extra_whitespaces
