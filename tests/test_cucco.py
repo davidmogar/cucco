@@ -15,7 +15,7 @@ from cucco import Cucco
 with open('tests/test_cases.json', 'r') as data:
     TESTS_DATA = json.load(data)
 
-class TestCucco:
+class TestCucco(object):
 
     _cucco = None
 

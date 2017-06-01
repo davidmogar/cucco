@@ -29,7 +29,7 @@ class TestConfig(object):
         assert len(config.normalizations) == 4, \
                 'normalizations should be a list of 4 elements'
 
-        config = Config(normalizations='tests/files/config_valid.yaml')
+        config = Config(normalizations='tests/files/config/config_valid.yaml')
         assert isinstance(config.normalizations, list), \
                 'normalizations should be a list'
         assert len(config.normalizations) == 3, \
@@ -41,18 +41,18 @@ class TestConfig(object):
         assert 'Problem while loading file' in str(e.value.message)
 
         with pytest.raises(ConfigError) as e:
-            config._load_from_file('tests/files/config_empty.yaml')
+            config._load_from_file('tests/files/config/config_empty.yaml')
         assert 'unexpected structure' in str(e.value.message)
 
         with pytest.raises(ConfigError) as e:
-            config._load_from_file('tests/files/config_invalid_key.yaml')
+            config._load_from_file('tests/files/config/config_invalid_key.yaml')
         assert 'unexpected structure' in str(e.value.message)
 
         with pytest.raises(ConfigError) as e:
-            config._load_from_file('tests/files/config_invalid.yaml')
+            config._load_from_file('tests/files/config/config_invalid.yaml')
         assert 'Invalid YAML' in str(e.value.message)
 
-        result = config._load_from_file('tests/files/config_valid.yaml')
+        result = config._load_from_file('tests/files/config/config_valid.yaml')
         assert isinstance(result, list), \
                 'normalizations should be a list'
         assert len(result) == 3, \
