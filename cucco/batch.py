@@ -113,6 +113,19 @@ class Batch(object):
             if not file.endswith(BATCH_EXTENSION):
                 self._process_file(os.path.join(path, file))
 
+    def stop_watching(self):
+        """Stop watching for files.
+
+        Stop the observer started by watch function and finish
+        thread life.
+        """
+        self.__watch = False
+
+        if self.__observer:
+            self._logger.info('Stopping watcher')
+            self.__observer.stop()
+            self._logger.info('Watcher stopped')
+
     def watch(self, path, recursive=False):
         """Watch for files in a directory and apply normalizations.
 
@@ -126,22 +139,21 @@ class Batch(object):
         self._logger.info('Initializing watcher for path "%s"', path)
 
         handler = FileHandler(self)
-        observer = Observer()
-        observer.schedule(handler, path, recursive)
+        self.__observer = Observer()
+        self.__observer.schedule(handler, path, recursive)
 
         self._logger.info('Starting watcher')
-        observer.start()
+        self.__observer.start()
+        self.__watch = True
 
         try:
             self._logger.info('Waiting for file events')
-            while True:
+            while self.__watch:
                 time.sleep(1)
         except KeyboardInterrupt:
-            self._logger.info('Stopping watcher')
-            observer.stop()
-            self._logger.info('Watcher stopped')
+            self.stop_watching()
 
-        observer.join()
+        self.__observer.join()
 
 
 class FileHandler(FileSystemEventHandler):
