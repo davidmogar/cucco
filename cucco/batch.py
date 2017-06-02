@@ -150,7 +150,7 @@ class Batch(object):
             self._logger.info('Waiting for file events')
             while self.__watch:
                 time.sleep(1)
-        except KeyboardInterrupt:
+        except KeyboardInterrupt: # pragma: no cover
             self.stop_watching()
 
         self.__observer.join()
