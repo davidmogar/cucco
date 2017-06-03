@@ -16,30 +16,61 @@ PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, PATH + '/../')
 
 from cucco.batch import Batch
+from cucco.batch import BATCH_EXTENSION
 from cucco.config import Config
 from cucco.cucco import Cucco
 
 BATCH_PATH = 'tests/files/batch'
 WATCH_PATH = 'tests/files/watch'
 
+def clean_up_files():
+    if os.path.isdir(BATCH_PATH):
+        for (path, dirs, files) in os.walk(BATCH_PATH):
+            for file in files:
+                if file.endswith(BATCH_EXTENSION):
+                    os.remove(os.path.join(path, file))
+
+    if os.path.isdir(WATCH_PATH):
+        shutil.rmtree(WATCH_PATH)
+
+def watch_directory(watched_file, recursive, batch):
+    thread = Thread(target = batch.watch, args = (WATCH_PATH, recursive))
+    thread.start()
+
+    # Create a file once the watcher is ready
+    time.sleep(1)
+    with open(watched_file, 'w') as f:
+        f.write('The line  1')
+
+    current = datetime.datetime.now()
+    limit = current + datetime.timedelta(seconds=20)
+
+    while current < limit:
+        if os.path.isfile('%s%s' % (watched_file, BATCH_EXTENSION)):
+            break
+
+        time.sleep(0.1)
+        current = datetime.datetime.now()
+
+    batch.stop_watching()
+
 
 class TestConfig(object):
 
     @pytest.fixture
     def batch(cls):
-        config = Config()
+        config = Config(debug=True, verbose=True)
         cucco = Cucco()
+
         return Batch(config, cucco)
 
     @classmethod
     def setup_class(cls):
-        for (path, dirs, files) in os.walk(BATCH_PATH):
-            for file in files:
-                if file.endswith('cucco'):
-                    os.remove(os.path.join(path, file))
+        clean_up_files()
 
-        if os.path.isdir(WATCH_PATH):
-            shutil.rmtree(WATCH_PATH)
+    @classmethod
+    def teardown_class(cls):
+        clean_up_files()
 
     def test_file_generator(self, batch):
         result = [ file for file in batch._file_generator(BATCH_PATH, False) ]
@@ -72,7 +103,7 @@ class TestConfig(object):
 
     def test_process_files(self, batch):
         batch.process_files(BATCH_PATH, False)
-        result = [ file for file in os.listdir(BATCH_PATH) if file.endswith('cucco') ]
+        result = [ file for file in os.listdir(BATCH_PATH) if file.endswith(BATCH_EXTENSION) ]
         assert len(result) == 3, \
                 'target directory should contain only three files'
 
@@ -90,24 +121,7 @@ class TestConfig(object):
         if not os.path.isdir(WATCH_PATH):
             os.makedirs(WATCH_PATH)
 
-        thread = Thread(target = batch.watch, args = (WATCH_PATH, ))
-        thread.start()
-
-        # Create a file once the watcher is ready
-        time.sleep(1)
-        with open('%s/watched_file' % WATCH_PATH, 'w') as file:
-            file.write('The line  1')
-
-        current = datetime.datetime.now()
-        limit = current + datetime.timedelta(seconds=20)
-
-        while current < limit:
-            if os.path.isfile('%s/watched_file.cucco' % WATCH_PATH):
-                break
-            time.sleep(0.1)
-            current = datetime.datetime.now()
-
-        batch.stop_watching()
+        watch_directory('%s/watched_file' % WATCH_PATH, False, batch)
 
         assert os.path.isfile('%s/watched_file.cucco' % WATCH_PATH), \
                 'normalized file should have been created'
@@ -123,24 +137,7 @@ class TestConfig(object):
         if not os.path.isdir(subdirectory):
             os.makedirs(subdirectory)
 
-        thread = Thread(target = batch.watch, args = (WATCH_PATH, True))
-        thread.start()
-
-        # Create a file once the watcher is ready
-        time.sleep(1)
-        with open('%s/watched_file' % subdirectory, 'w') as file:
-            file.write('The line  1')
-
-        current = datetime.datetime.now()
-        limit = current + datetime.timedelta(seconds=20)
-
-        while current < limit:
-            if os.path.isfile('%s/watched_file.cucco' % subdirectory):
-                break
-            time.sleep(0.1)
-            current = datetime.datetime.now()
-
-        batch.stop_watching()
+        watch_directory('%s/watched_file' % subdirectory, True, batch)
 
         assert os.path.isfile('%s/watched_file.cucco' % subdirectory), \
                 'normalized file should have been created'
