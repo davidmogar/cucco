@@ -10,9 +10,6 @@ python:
   - "nightly" # currently points to 3.7-dev
 install:
   - pip install -r requirements.txt
-  - pip install -U pytest
-  - pip install codecov
-  - pip install pytest-cov
+  - pip install -r test-requirements.txt
 script: pytest --cov=./
-after_success:
-  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then codecov; fi
+after_success: ./scripts/after_success.sh

@@ -1,4 +1,5 @@
 coverage:
   ignore:
-    - 'tests/*'
+    - 'cucco/cli.py'
     - 'setup.py'
+    - 'tests/*'

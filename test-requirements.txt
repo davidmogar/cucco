@@ -1,4 +1,4 @@
-click
 codeclimate-test-reporter
-pyyaml
-watchdog
+codecov
+pytest
+pytest-cov
