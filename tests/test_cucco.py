@@ -15,7 +15,7 @@ from cucco import Cucco
 with open('tests/test_cases.json', 'r') as data:
     TESTS_DATA = json.load(data)
 
-class TestCucco:
+class TestCucco(object):
 
     _cucco = None
 
@@ -40,6 +40,11 @@ class TestCucco:
             assert self._cucco.remove_accent_marks(before) == after, message
 
     def test_remove_stop_words(self, request):
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            assert self._cucco.remove_stop_words(before, **kwargs) == after, message
+
+        # Test lazy load
+        self._cucco = Cucco(lazy_load=True)
         for after, before, _, kwargs, message in self._tests_generator(request.node.name):
             assert self._cucco.remove_stop_words(before, **kwargs) == after, message
 

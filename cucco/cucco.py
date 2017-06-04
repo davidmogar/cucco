@@ -1,7 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 
 import codecs
-import logging
 import os
 import re
 import string
@@ -10,102 +9,103 @@ import unicodedata
 
 import cucco.regex as regex
 
+from cucco.config import Config
+
 PATH = os.path.dirname(__file__)
 
-DEFAULT_NORMALIZATIONS = [
-    'remove_extra_whitespaces',
-    'replace_punctuation',
-    'replace_symbols',
-    'remove_stop_words'
-]
 
-
-def get_logger(level):
-    """
-    Initialize logger.
-
-    Params:
-        level (integer): Log level as defined in logging.
-    """
-    logging.basicConfig()
-    logger = logging.getLogger("Cucco")
-    logger.setLevel(level)
-
-    return logger
-
-
-class Cucco:
-    """
-    This class offers methods for text normalization.
+class Cucco(object):
+    """This class offers methods for text normalization.
 
     Attributes:
-        language (string): Language used for normalization.
-        lazy_load (boolean): Whether or not to lazy load files.
+        config: Config to use.
+        lazy_load: Whether or not to lazy load files.
     """
     __punctuation = set(string.punctuation)
 
     def __init__(
             self,
-            language='en',
-            lazy_load=False,
-            logger_level=logging.INFO):
-        self.__language = language
-        self.__logger = get_logger(logger_level)
-        self.__stop_words = set()
+            config=None,
+            lazy_load=False):
+        self.__config = config if config else Config()
+
         self.__characters_regexes = dict()
+        self.__logger = self.__config.logger
+        self.__stop_words = set()
 
         if not lazy_load:
-            self._load_stop_words(language)
+            self._load_stop_words(self.__config.language)
 
     def _load_stop_words(self, language):
-        """
-        Load stop words into __stop_words set.
+        """Load stop words into __stop_words set.
 
-        Stop words will be loaded according to the language code received during instantiation.
+        Stop words will be loaded according to the language code
+        received during instantiation.
 
-        Params:
-            language (string): Language code.
+        Args:
+            language: Language code.
         """
-        self.__logger.debug('loading stop words')
-        with codecs.open(os.path.join(PATH, 'data/stop-' + language), 'r', 'UTF-8') as file:
+        self.__logger.debug('Loading stop words')
+
+        file_path = 'data/stop-' + language
+        if not os.path.isfile(file_path):
+            file_path = 'data/stop-en'
+
+        with codecs.open(os.path.join(PATH, file_path),
+                         'r', 'UTF-8') as file:
             for word in file:
                 self.__stop_words.add(word.strip())
 
     @staticmethod
     def _parse_normalizations(normalizations):
+        """Parse and yield normalizations.
+
+        Parse normalizations parameter yielding all normalizations and
+        arguments found on it.
+
+        Args:
+            normalizations: List of normalizations.
+
+        Yields:
+            A tuple with a parsed normalization. The first item will
+            contain the normalization name and the second will be a dict
+            with the arguments to use for the normalization.
+        """
         str_type = str if sys.version_info[0] > 2 else (str, unicode)
 
         for normalization in normalizations:
             yield (normalization, {}) if isinstance(normalization, str_type) else normalization
 
     def normalize(self, text, normalizations=None):
-        """
-        Normalize a given text applying all normalizations.
+        """Normalize a given text applying all normalizations.
 
-        Normalizations to apply can be specified through a list parameter and will be executed
-        in the same order.
+        Normalizations to apply can be specified through a list
+        parameter and will be executed in the same order.
 
-        Params:
-            text (string): The text to be processed.
-            normalizations (list): List of normalizations to apply.
+        Args:
+            text: The text to be processed.
+            normalizations: List of normalizations to apply.
 
         Returns:
             The text normalized.
         """
         for normalization, kwargs in self._parse_normalizations(
-                normalizations or DEFAULT_NORMALIZATIONS):
+                normalizations or self.__config.normalizations):
             text = getattr(self, normalization)(text, **kwargs)
 
         return text
 
     @staticmethod
     def remove_accent_marks(text, excluded=None):
-        """
-        Remove accent marks from input text.
+        """Remove accent marks from input text.
 
-        Params:
-            text (string): The text to be processed.
-            excluded (set): Set of unicode characters to exclude.
+        This function remove accent marks in the text, leaving
+        untouched unicode characters defined in the 'excluded'
+        parameter.
+
+        Args:
+            text: The text to be processed.
+            excluded: Set of unicode characters to exclude.
 
         Returns:
             The text without accent marks.
@@ -120,47 +120,49 @@ class Cucco:
 
     @staticmethod
     def remove_extra_whitespaces(text):
-        """
-        Remove extra whitespaces from input text.
+        """Remove extra white spaces from input text.
 
-        This function removes whitespaces from the beginning and the end of
-        the string, but also duplicated whitespaces between words.
+        This function removes white spaces from the beginning and
+        the end of the string, but also duplicated white spaces
+        between words.
 
-        Params:
-            text (string): The text to be processed.
+        Args:
+            text: The text to be processed.
 
         Returns:
-            The text without extra whitespaces.
+            The text without extra white spaces.
         """
         return ' '.join(text.split())
 
     def remove_stop_words(self, text, ignore_case=True):
-        """
-        Remove stop words.
+        """Remove stop words.
 
-        Stop words are loaded on class instantiation according with the specified language.
+        Stop words are loaded on class instantiation according
+        with the specified language.
 
-        Params:
-            text (string): The text to be processed.
-            ignore_case (boolean): Whether or not ignore case.
+        Args:
+            text: The text to be processed.
+            ignore_case: Whether or not ignore case.
 
         Returns:
             The text without stop words.
         """
         if not self.__stop_words:
-            self._load_stop_words(self.__language)
+            self._load_stop_words(self.__config.language)
 
         return ' '.join(word for word in text.split(' ') if (
             word.lower() if ignore_case else word) not in self.__stop_words)
 
     def replace_characters(self, text, characters, replacement=''):
-        """
-        Remove custom characters from input text or replace them with a string if specified.
+        """Remove characters from text.
 
-        Params:
-            text (string): The text to be processed.
-            characters (string): Characters that will be replaced.
-            replacement (string): New text that will replace the custom characters.
+        Remove custom characters from input text or replace them
+        with a string if specified.
+
+        Args:
+            text: The text to be processed.
+            characters: Characters that will be replaced.
+            replacement: New text that will replace the custom characters.
 
         Returns:
             The text without the given characters.
@@ -179,12 +181,14 @@ class Cucco:
 
     @staticmethod
     def replace_emails(text, replacement=''):
-        """
-        Remove email addresses from input text or replace them with a string if specified.
+        """Remove emails address from text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace email addresses.
+        Remove email addresses from input text or replace them
+        with a string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace email addresses.
 
         Returns:
             The text without email addresses.
@@ -193,27 +197,30 @@ class Cucco:
 
     @staticmethod
     def replace_emojis(text, replacement=''):
-        """
-        Remove emojis from input text or replace them with a string if specified.
+        """Remove emojis from text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace emojis.
+        Remove emojis from input text or replace them with a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace emojis.
 
         Returns:
             The text without hyphens.
         """
-
         return regex.EMOJI_REGEX.sub(replacement, text)
 
     @staticmethod
     def replace_hyphens(text, replacement=' '):
-        """
-        Replace hyphens from input text with a whitespace or a string if specified.
+        """Replace hyphens in text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace hyphens.
+        Replace hyphens from input text with a whitespace or a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace hyphens.
 
         Returns:
             The text without hyphens.
@@ -221,15 +228,16 @@ class Cucco:
         return text.replace('-', replacement)
 
     def replace_punctuation(self, text, excluded=None, replacement=''):
-        """
-        Remove punctuation from input text or replace them with a string if specified.
+        """Replace punctuation symbols in text.
 
-        This function will remove characters from string.punctuation.
+        Remove punctuation from input text or replace them with a
+        string if specified. Characters replaces will be those
+        in string.punctuation.
 
-        Params:
-            text (string): The text to be processed.
-            excluded (set): Set of characters to exclude.
-            replacement (string): New text that will replace punctuation.
+        Args:
+            text: The text to be processed.
+            excluded: Set of characters to exclude.
+            replacement: New text that will replace punctuation.
 
         Returns:
             The text without punctuation.
@@ -249,14 +257,16 @@ class Cucco:
             form='NFKD',
             excluded=None,
             replacement=''):
-        """
-        Remove symbols from input text or replace them with a string if specified.
+        """Replace symbols in text.
 
-        Params:
-            text (string): The text to be processed.
-            form (string): Unicode form.
-            excluded (set): Set of unicode characters to exclude.
-            replacement (string): New text that will replace symbols.
+        Remove symbols from input text or replace them with a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            form: Unicode form.
+            excluded: Set of unicode characters to exclude.
+            replacement: New text that will replace symbols.
 
         Returns:
             The text without symbols.
@@ -271,12 +281,14 @@ class Cucco:
 
     @staticmethod
     def replace_urls(text, replacement=''):
-        """
-        Remove URLs from input text or replace them with a string if specified.
+        """Replace URLs in text.
 
-        Params:
-            text (string): The text to be processed.
-            replacement (string): New text that will replace URLs.
+        Remove URLs from input text or replace them with a
+        string if specified.
+
+        Args:
+            text: The text to be processed.
+            replacement: New text that will replace URLs.
 
         Returns:
             The text without URLs.

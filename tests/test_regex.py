@@ -16,7 +16,7 @@ from cucco import regex
 with open('tests/test_cases.json', 'r') as data:
     TESTS_DATA = json.load(data)
 
-class TestRegex:
+class TestRegex(object):
 
     @staticmethod
     def _find_all(pattern, string):
