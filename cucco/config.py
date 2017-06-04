@@ -48,8 +48,6 @@ class Config(object):
                 normalizations = self._load_from_file(normalizations)
 
             self.normalizations = self._parse_normalizations(normalizations)
-        else:
-            self.logger.warning('Using default normalizations')
 
     @staticmethod
     def _load_from_file(path):
