@@ -37,13 +37,19 @@ Now that you have a cucco, I'll let him give you all the details.
 
 So true... so true...[tears falling down my face]. Just allow me to add some details.
 
-The next example code shows how to normalize a short text:
+There are two ways of using cucco. The first one is through its CLI. You can get more info on this executing the next command:
+
+::
+
+    $ cucco --help
+
+The next example code shows how to normalize a short text using cucco inside your code:
 
 .. code:: python
 
     from cucco import Cucco
 
-    cucco = Cucco(language='en')
+    cucco = Cucco()
     print(cucco.normalize('Who let the cucco out?'))
 
 This would apply all normalizations to the text ``Who let the cucco out?``. The output for this normaliations would be the next one:
@@ -58,7 +64,7 @@ It's also possible to send a list of normalizations to apply, which will be exec
 
     from cucco import Cucco
 
-    cucco = Cucco(language='en')
+    cucco = Cucco()
 
     normalizations = [
         'remove_extra_whitespaces',
@@ -73,18 +79,7 @@ This is the output:
 
     Who let the cucco out
 
-Finally, if you only need to apply one normalization, use one of these methods:
-
--  remove\_accent\_marks
--  remove\_extra\_whitespaces
--  remove\_stop\_words
--  replace\_charachters
--  replace\_emails
--  replace\_emojis
--  replace\_hyphens
--  replace\_punctuation
--  replace\_symbols
--  replace\_urls
+For more information on how to use cucco, you can `check its website <cucco.io>`_, which will be ready cucco-soon.
 
 Supported languages
 -------------------
