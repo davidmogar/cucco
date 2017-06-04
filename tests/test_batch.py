@@ -17,6 +17,8 @@ sys.path.insert(0, PATH + '/../')
 
 from cucco.batch import Batch
 from cucco.batch import BATCH_EXTENSION
+from cucco.batch import files_generator
+from cucco.batch import lines_generator
 from cucco.config import Config
 from cucco.cucco import Cucco
 
@@ -72,25 +74,25 @@ class TestConfig(object):
     def teardown_class(cls):
         clean_up_files()
 
-    def test_file_generator(self, batch):
-        result = [ file for file in batch._file_generator(BATCH_PATH, False) ]
+    def test_files_generator(self, batch):
+        result = [ file for file in files_generator(BATCH_PATH, False) ]
         assert len(result) == 3, \
                 'target directory should contain only three files'
 
-        result = [ file for file in batch._file_generator(BATCH_PATH, True) ]
+        result = [ file for file in files_generator(BATCH_PATH, True) ]
         assert len(result) == 4, \
                 'target directory should contain only four files'
 
-    def line_generator(self, batch):
-        result = [ line for line in batch._line_generator('%s/batch_one_line' % BATCH_PATH) ]
+    def test_lines_generator(self, batch):
+        result = [ line for line in lines_generator('%s/batch_one_line' % BATCH_PATH) ]
         assert len(result) == 1, \
                 'target file should contain exactly one line'
 
-        result = [ line for line in batch._line_generator('%s/subdirectory/batch_four_line' % BATCH_PATH) ]
+        result = [ line for line in lines_generator('%s/subdirectory/batch_four_lines' % BATCH_PATH) ]
         assert len(result) == 4, \
                 'target file should contain exactly four lines'
-        assert 'Line three' in result, \
-                'target file should contain "Line three"'
+        assert 'Line 3\n' in result, \
+                'target file should contain "Line 3"'
 
     def test_process_file(self, batch):
         batch._process_file('%s/batch_one_line' % BATCH_PATH)

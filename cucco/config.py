@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 
-import json
 import sys
 import yaml
 
@@ -52,7 +51,8 @@ class Config(object):
         else:
             self.logger.warning('Using default normalizations')
 
-    def _load_from_file(self, path):
+    @staticmethod
+    def _load_from_file(path):
         """Load a config file from the given path.
 
         Load all normalizations from the config file received as
@@ -68,7 +68,8 @@ class Config(object):
             with open(path, 'r') as config_file:
                 config = yaml.load(config_file)['normalizations']
         except EnvironmentError as e:
-            raise ConfigError('Problem while loading file: %s' % e.args[1] if len(e.args) > 1 else e)
+            raise ConfigError('Problem while loading file: %s' %
+                              e.args[1] if len(e.args) > 1 else e)
         except (TypeError, KeyError) as e:
             raise ConfigError('Config file has an unexpected structure: %s' % e)
         except yaml.YAMLError:
@@ -76,7 +77,8 @@ class Config(object):
 
         return config
 
-    def _parse_normalization(self, normalization):
+    @staticmethod
+    def _parse_normalization(normalization):
         """Parse a normalization item.
 
         Transform dicts into a tuple containing the normalization
