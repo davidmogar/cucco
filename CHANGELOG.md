@@ -12,6 +12,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Changed
 - Order of default normalizations to remove extra white spaces after removing punctuation.
 
-## [1.1.0] - 2015-12-15
+## [1.1.0] - 2017-05-15
 ### Changed
 - New stop words files. Cucco is hungry for words and now can deal with 50 laguages.
