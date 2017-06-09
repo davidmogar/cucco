@@ -43,9 +43,22 @@ class TestCucco(object):
         for after, before, _, kwargs, message in self._tests_generator(request.node.name):
             assert self._cucco.remove_stop_words(before, **kwargs) == after, message
 
+        # Force language
+        self._cucco = Cucco()
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            kwargs['language'] = 'en'
+            assert self._cucco.remove_stop_words(before, **kwargs) == after, message
+
+        # Force invalid language
+        self._cucco = Cucco()
+        for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            kwargs['language'] = 'invalid'
+            assert self._cucco.remove_stop_words(before, **kwargs) == before, message
+
         # Test lazy load
         self._cucco = Cucco(lazy_load=True)
         for after, before, _, kwargs, message in self._tests_generator(request.node.name):
+            kwargs['language'] = 'en'
             assert self._cucco.remove_stop_words(before, **kwargs) == after, message
 
     def test_replace_characters(self, request):

@@ -31,12 +31,12 @@ class Cucco(object):
 
         self.__characters_regexes = dict()
         self.__logger = self.__config.logger
-        self.__stop_words = set()
+        self.__stop_words = dict()
 
-        if not lazy_load:
-            self._load_stop_words(self.__config.language)
+        # Load stop words
+        self._load_stop_words(self.__config.language if lazy_load else None)
 
-    def _load_stop_words(self, language):
+    def _load_stop_words(self, language=None):
         """Load stop words into __stop_words set.
 
         Stop words will be loaded according to the language code
@@ -47,14 +47,16 @@ class Cucco(object):
         """
         self.__logger.debug('Loading stop words')
 
-        file_path = 'data/stop-' + language
-        if not os.path.isfile(file_path):
-            file_path = 'data/stop-en'
+        loaded = False
 
-        with codecs.open(os.path.join(PATH, file_path),
-                         'r', 'UTF-8') as file:
-            for word in file:
-                self.__stop_words.add(word.strip())
+        if language:
+            file_path = 'data/stop-' + language
+            loaded = self._parse_stop_words_file(os.path.join(PATH, file_path))
+        else:
+            for file in os.listdir(os.path.join(PATH, 'data')):
+                loaded = self._parse_stop_words_file(os.path.join(PATH, 'data', file)) or loaded
+
+        return loaded
 
     @staticmethod
     def _parse_normalizations(normalizations):
@@ -75,6 +77,35 @@ class Cucco(object):
 
         for normalization in normalizations:
             yield (normalization, {}) if isinstance(normalization, str_type) else normalization
+
+    def _parse_stop_words_file(self, path):
+        """Load stop words from the given path.
+
+        Parse an stop words file, saving each word found in it in a set
+        for the languaage of the file. This language is obtained from
+        the file name. If the file doesn't exist, the method will have
+        no effect.
+
+        Args:
+            path: Path to the stop words file.
+        """
+        language = None
+        loaded = False
+
+        if os.path.isfile(path):
+            self.__logger.debug('Loading stop words in %s', path)
+
+            language = path.split('-')[-1]
+
+            if not language in self.__stop_words:
+                self.__stop_words[language] = set()
+
+            with codecs.open(path, 'r', 'UTF-8') as file:
+                loaded = True
+                for word in file:
+                    self.__stop_words[language].add(word.strip())
+
+        return loaded
 
     def normalize(self, text, normalizations=None):
         """Normalize a given text applying all normalizations.
@@ -134,7 +165,7 @@ class Cucco(object):
         """
         return ' '.join(text.split())
 
-    def remove_stop_words(self, text, ignore_case=True):
+    def remove_stop_words(self, text, ignore_case=True, language=None):
         """Remove stop words.
 
         Stop words are loaded on class instantiation according
@@ -147,11 +178,16 @@ class Cucco(object):
         Returns:
             The text without stop words.
         """
-        if not self.__stop_words:
-            self._load_stop_words(self.__config.language)
+        if not language:
+            language = self.__config.language
+
+        if language not in self.__stop_words:
+            if not self._load_stop_words(language):
+                self.__logger.error('No stop words file for the given language')
+                return text
 
         return ' '.join(word for word in text.split(' ') if (
-            word.lower() if ignore_case else word) not in self.__stop_words)
+            word.lower() if ignore_case else word) not in self.__stop_words[language])
 
     def replace_characters(self, text, characters, replacement=''):
         """Remove characters from text.
