@@ -1,5 +1,5 @@
-cucco |Build Status| |codecov| |beerpay|
-========================================
+cucco |Build Status| |codecov| |beerpay| |gitter|
+=================================================
 
 Is that... is that a cucco? Sure it is!
 
@@ -101,3 +101,5 @@ Not in the mood to implement it yourself? You can still create an issue and comm
    :target: https://codecov.io/gh/davidmogar/cucco
 .. |beerpay| image:: https://beerpay.io/davidmogar/cucco/badge.svg?style=flat
    :target: https://beerpay.io/davidmogar/cucco
+.. |gitter| image:: https://badges.gitter.im/gitterHQ/gitter.png
+    :target: https://gitter.im/davidmogar/cucco
