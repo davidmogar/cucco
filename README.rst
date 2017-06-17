@@ -101,5 +101,5 @@ Not in the mood to implement it yourself? You can still create an issue and comm
    :target: https://codecov.io/gh/davidmogar/cucco
 .. |beerpay| image:: https://beerpay.io/davidmogar/cucco/badge.svg?style=flat
    :target: https://beerpay.io/davidmogar/cucco
-.. |gitter| image:: https://badges.gitter.im/gitterHQ/gitter.png
+.. |gitter| image:: https://img.shields.io/gitter/room/nwjs/nw.js.svg
     :target: https://gitter.im/davidmogar/cucco
