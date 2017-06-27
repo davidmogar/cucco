@@ -1,5 +1,5 @@
-cucco |Build Status| |codecov| |beerpay|
-========================================
+cucco |Build Status| |codecov| |patreon| |gitter|
+=================================================
 
 Is that... is that a cucco? Sure it is!
 
@@ -99,5 +99,7 @@ Not in the mood to implement it yourself? You can still create an issue and comm
    :target: https://travis-ci.org/davidmogar/cucco
 .. |codecov| image:: https://codecov.io/gh/davidmogar/cucco/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/davidmogar/cucco
-.. |beerpay| image:: https://beerpay.io/davidmogar/cucco/badge.svg?style=flat
-   :target: https://beerpay.io/davidmogar/cucco
+.. |patreon| image:: https://img.shields.io/badge/support%20on-patreon-red.svg
+   :target: https://www.patreon.com/davidmogar
+.. |gitter| image:: https://img.shields.io/gitter/room/nwjs/nw.js.svg
+    :target: https://gitter.im/davidmogar/cucco
