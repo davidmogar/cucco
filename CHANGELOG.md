@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.1] - 2017-06-27
+### Fixed
+- Fix encoding on previous version while reading a file using the CLI.
+
 ## [2.2.0] - 2017-06-27
 ### Added
 - Add functionality to normalize a single file using cucco CLI.
