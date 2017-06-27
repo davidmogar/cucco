@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 
 import click
+import os
 import sys
 
 import cucco.logging as logging
@@ -30,10 +31,16 @@ def batch(ctx, path, recursive, watch):
     """
     batch = Batch(ctx.obj['config'], ctx.obj['cucco'])
 
-    if watch:
-        batch.watch(path, recursive)
+    if os.path.exists(path):
+        if watch:
+            batch.watch(path, recursive)
+        elif os.path.isfile(path):
+            batch.process_file(path)
+        else:
+            batch.process_files(path, recursive)
     else:
-        batch.process_files(path, recursive)
+        click.echo('Error: Specified path doesn\'t exists', err=True)
+        sys.exit(-1)
 
 @click.command()
 @click.argument('text', required=False)

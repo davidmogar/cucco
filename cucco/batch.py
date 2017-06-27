@@ -73,7 +73,7 @@ class Batch(object):
         self._observer = None
         self._watch = False
 
-    def _process_file(self, path):
+    def process_file(self, path):
         """Process a file applying normalizations.
 
         Get a file as input and generate a new file with the
@@ -91,10 +91,9 @@ class Batch(object):
 
         with open(output_path, 'w') as file:
             for line in lines_generator(path):
-                file.write('%s\n' % self._cucco.normalize(line))
+                file.write('%s\n' % self._cucco.normalize(line.decode('utf-8')))
 
-        if self._config.debug:
-            self._logger.debug('Created file "%s"', output_path)
+        self._logger.debug('Created file "%s"', output_path)
 
     def process_files(self, path, recursive=False):
         """Apply normalizations over all files in the given directory.
@@ -112,7 +111,7 @@ class Batch(object):
 
         for (path, file) in files_generator(path, recursive):
             if not file.endswith(BATCH_EXTENSION):
-                self._process_file(os.path.join(path, file))
+                self.process_file(os.path.join(path, file))
 
     def stop_watching(self):
         """Stop watching for files.
@@ -170,7 +169,6 @@ class FileHandler(FileSystemEventHandler):
     def __init__(self, batch):
         """Inits Batch class."""
         self._batch = batch
-        self._debug = batch._config.debug
         self._logger = batch._logger
 
     def _process_event(self, event):
@@ -186,7 +184,7 @@ class FileHandler(FileSystemEventHandler):
         if (not event.is_directory and
                 not event.src_path.endswith(BATCH_EXTENSION)):
             self._logger.info('Detected file change: %s', event.src_path)
-            self._batch._process_file(event.src_path)
+            self._batch.process_file(event.src_path)
 
     def on_created(self, event):
         """Function called everytime a new file is created.
@@ -194,8 +192,7 @@ class FileHandler(FileSystemEventHandler):
         Args:
             event: Event to process.
         """
-        if self._debug:
-            self._logger.debug('Detected create event on watched path: %s', event.src_path)
+        self._logger.debug('Detected create event on watched path: %s', event.src_path)
 
         self._process_event(event)
 
@@ -205,7 +202,6 @@ class FileHandler(FileSystemEventHandler):
         Args:
             event: Event to process.
         """
-        if self._debug:
-            self._logger.debug('Detected modify event on watched path: %s', event.src_path)
+        self._logger.debug('Detected modify event on watched path: %s', event.src_path)
 
         self._process_event(event)

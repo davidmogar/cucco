@@ -95,7 +95,7 @@ class TestConfig(object):
                 'target file should contain "Line 3"'
 
     def test_process_file(self, batch):
-        batch._process_file('%s/batch_one_line' % BATCH_PATH)
+        batch.process_file('%s/batch_one_line' % BATCH_PATH)
         assert os.path.isfile('%s/batch_one_line.cucco' % BATCH_PATH), \
                 'normalized file should have been created'
 
