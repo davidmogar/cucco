@@ -91,7 +91,8 @@ class Batch(object):
 
         with open(output_path, 'w') as file:
             for line in lines_generator(path):
-                file.write('%s\n' % self._cucco.normalize(line.decode('utf-8')))
+                file.write('%s\n' % self._cucco.normalize(
+                           line.encode().decode('utf-8')))
 
         self._logger.debug('Created file "%s"', output_path)
 
