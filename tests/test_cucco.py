@@ -73,9 +73,9 @@ class TestCucco(object):
         for after, before, _, kwargs, message in self._tests_generator(request.node.name):
             assert self._cucco.replace_emojis(text=before, **kwargs) == after, message
 
-    def test_remove_extra_whitespaces(self, request):
+    def test_remove_extra_white_spaces(self, request):
         for after, before, _, _, message in self._tests_generator(request.node.name):
-            assert self._cucco.remove_extra_whitespaces(before) == after, message
+            assert self._cucco.remove_extra_white_spaces(before) == after, message
 
     def test_replace_hyphens(self, request):
         for after, before, _,  kwargs, message in self._tests_generator(request.node.name):

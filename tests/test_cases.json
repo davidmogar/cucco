@@ -15,7 +15,7 @@
         "after": "The cucco appeared in the backyard?",
         "before": " The   cucco appeared in the backyard? ",
         "kwargs": {
-          "normalizations": [ "remove_extra_whitespaces" ]
+          "normalizations": [ "remove_extra_white_spaces" ]
         },
         "message": "should apply only custom normalizations"
       },
@@ -23,7 +23,7 @@
         "after": "The cucco appeared in the backyard?",
         "before": " The   cucco appeared in the backyard? ",
         "kwargs": {
-          "normalizations": [ "remove_extra_whitespaces" ]
+          "normalizations": [ "remove_extra_white_spaces" ]
         },
         "message": "should apply only custom normalizations"
       }
@@ -153,7 +153,7 @@
         "message": "should replace the smiley"
       }
     ],
-    "remove_extra_whitespaces": [
+    "remove_extra_white_spaces": [
       {
         "after": "",
         "before": "",
@@ -172,7 +172,7 @@
       {
         "after": "Who let the dog out?",
         "before": "Who let  the dog out?",
-        "message": "should remove double whitespaces"
+        "message": "should remove double white spaces"
       },
       {
         "after": "Who let the dog out?",
@@ -182,7 +182,7 @@
       {
         "after": "Who let the dog out?",
         "before": " Who\tlet \n the dog out?\n\n\n\t",
-        "message": "should remove all extra whitespaces"
+        "message": "should remove all extra white spaces"
       }
     ],
     "replace_hyphens": [

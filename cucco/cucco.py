@@ -160,7 +160,7 @@ class Cucco(object):
                     'NFKD', text) if unicodedata.category(c) != 'Mn' or c in excluded))
 
     @staticmethod
-    def remove_extra_whitespaces(text):
+    def remove_extra_white_spaces(text):
         """Remove extra white spaces from input text.
 
         This function removes white spaces from the beginning and

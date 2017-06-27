@@ -9,7 +9,7 @@ from cucco.errors import ConfigError
 
 DEFAULT_NORMALIZATIONS = [
     'replace_punctuation',
-    'remove_extra_whitespaces',
+    'remove_extra_white_spaces',
     'replace_symbols',
     'remove_stop_words'
 ]

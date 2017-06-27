@@ -63,8 +63,8 @@ class TestConfig(object):
                     isinstance(normalization, STR_TYPE)), \
                 'all normalizations should be dictionaries'
 
-        assert list(result[0].keys())[0] == 'remove_extra_whitespaces', \
-                'first normalization should be remove_extra_whitespaces'
+        assert list(result[0].keys())[0] == 'remove_extra_white_spaces', \
+                'first normalization should be remove_extra_white_spaces'
 
     def test_parse_normalization(self, config):
         assert config._parse_normalization(None) == None, \
@@ -107,5 +107,3 @@ class TestConfig(object):
                 'normalizations second element should have two options'
         assert isinstance(result[2], STR_TYPE), \
                 'normalizations third element should be a string'
-
-
