@@ -3,7 +3,7 @@ cucco |Build Status| |codecov| |beerpay|
 
 Is that... is that a cucco? Sure it is!
 
-Cucco is here to help you to normalize those nasty texts. Removing extra whitespaces is not that hard, right? What about stop words? They're no good... oh, and don't even mention emojis!
+Cucco is here to help you to normalize those nasty texts. Removing extra white spaces is not that hard, right? What about stop words? They're no good... oh, and don't even mention emojis!
 
 This little friend will do the hard work for you. Just set it up and let it peck all over your text.
 
@@ -67,7 +67,7 @@ It's also possible to send a list of normalizations to apply, which will be exec
     cucco = Cucco()
 
     normalizations = [
-        'remove_extra_whitespaces',
+        'remove_extra_white_spaces',
         ('replace_punctuation', {'replacement': ' '})
     ]
 
