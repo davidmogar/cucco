@@ -128,7 +128,11 @@ class Cucco(object):
         """
         for normalization, kwargs in self._parse_normalizations(
                 normalizations or self._config.normalizations):
-            text = getattr(self, normalization)(text, **kwargs)
+            try:
+                text = getattr(self, normalization)(text, **kwargs)
+            except AttributeError as e:
+                self._logger.debug('Invalid normalization: %s', e)
+
 
         return text
 
