@@ -12,6 +12,7 @@ version = re.search(
 setup(name='cucco',
       version=version,
       description='Python library for text normalization',
+      long_description=open('README.rst').read(),
       author='David Moreno-Garcia',
       author_email='david.mogar@gmail.com',
       license='MIT',
