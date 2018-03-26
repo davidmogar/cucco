@@ -80,7 +80,7 @@ This is the output:
 
     Who let the cucco out
 
-For more information on how to use cucco you can `check its website <cucco.io>`_, which will be ready cucco-soon.
+For more information on how to use cucco you can `check its website <http://cucco.io>`_, which will be ready cucco-soon.
 
 Supported languages
 -------------------
